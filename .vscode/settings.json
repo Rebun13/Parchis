@@ -7,5 +7,12 @@
 		"**/.DS_Store": true,
 		"**/*.o": true,
 		"**/*.exe": true,
-	}
+	},
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "c:\\Users\\rebun\\bin\\Debug",
+			"binaryPath": "c:\\Users\\rebun\\bin\\Debug\\parchis.exe",
+			"binaryArgs": []
+		}
+	]
 }
