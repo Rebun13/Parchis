@@ -8,9 +8,9 @@ public:
     LoadingState()
         : loadingTime_(0){}
 
-    virtual void handleInput(Game &game, Input input);
+    void handleInput(Game *game, Input *input);
 
-    virtual void update(Game &game);
+    void update(Game *game);
 
 private:
     int loadingTime_;

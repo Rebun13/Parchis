@@ -1,17 +1,22 @@
+#pragma once
+
 class Game;
 class Input;
+class InputHandler;
 
-class GameState {
+class GameState
+{
 public:
     static class LoadingState loading;
     static class MenuState menu;
     static class PlayingState playing;
 
-    virtual ~GameState() {}
-    virtual void handleInput(Game &game, Input input) {
-        InputHandler_->execute_()
-    }
-    virtual void update(Game &game) {}
+    virtual ~GameState() = 0;
+
 private:
-    class InputHandler *inputHandler_;
+    InputHandler *inputHandler_;
+
+public:
+    virtual void update(Game &game) = 0;
+    virtual void handleInput(Game &game, Input &input) = 0;
 };

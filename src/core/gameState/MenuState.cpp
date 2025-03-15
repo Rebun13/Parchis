@@ -7,7 +7,7 @@ MenuState::MenuState()
 {
 }
 
-void MenuState::handleInput(Game &game, Input input)
+void MenuState::handleInput(Game &game, Input &input)
 {
     if (input == TOUCH_PLAY)
     {

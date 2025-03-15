@@ -1,8 +1,8 @@
 class Input;
-
+// Input handler binds the inputs to a input command (Input derivates)
 class InputHandler
 {
 public:
-    Input* virtual handleInput() = 0;
-    void virtual bindInput() = 0;
+    virtual Input* handleInput() = 0;
+    virtual void bindInput() = 0;
 };

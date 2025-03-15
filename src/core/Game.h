@@ -5,6 +5,10 @@ class Game
 public:
   Game();
 
-  GameState* state_ = &GameState::loading;
-  void handleInput(Input input);
+private:
+  GameState* state_;
+
+public:
+  void handleInput(Input *input);
+  void setState(GameState *state);
 };

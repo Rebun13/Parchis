@@ -1,4 +1,5 @@
 #include "LoadingState.h"
+#include "../Game.h"
 #include <ctime>
 
 LoadingState::LoadingState()
@@ -8,18 +9,18 @@ LoadingState::LoadingState()
     loadingTime_ = (int) timestamp;
 }
 
-void LoadingState::handleInput(Game &game, Input input)
+void LoadingState::handleInput(Game *game, Input *input)
 {
-    return
+    return;
 }
 
-void LoadingState::update(Game &game)
+void LoadingState::update(Game *game)
 {
     time_t timestamp;
     time(&timestamp);
     if ((int) timestamp - loadingTime_ > LOADING_DURATION)
     {
-        game.state_ = &GameState::MENU;
+        game->setState(&GameState::menu);
     }
 }
 
