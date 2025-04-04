@@ -68,6 +68,22 @@
 		"xloctime": "cpp",
 		"xmemory": "cpp",
 		"xtr1common": "cpp",
-		"xutility": "cpp"
+		"xutility": "cpp",
+		"deque": "cpp",
+		"span": "cpp",
+		"string_view": "cpp",
+		"text_encoding": "cpp",
+		"variant": "cpp",
+		"array": "cpp",
+		"*.tcc": "cpp",
+		"cstdarg": "cpp",
+		"cwctype": "cpp",
+		"unordered_map": "cpp",
+		"functional": "cpp",
+		"memory_resource": "cpp",
+		"numeric": "cpp",
+		"random": "cpp",
+		"numbers": "cpp",
+		"cinttypes": "cpp"
 	}
 }
