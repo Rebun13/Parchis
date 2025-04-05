@@ -2,11 +2,6 @@
 #include "raylib.h"
 #include <iostream>
 
-MainMenu::MainMenu()
-{
-    mustClose = false;
-}
-
 void MainMenu::draw()
 {
     // Draw buttons
@@ -25,6 +20,7 @@ void MainMenu::onTouch(Vector2 coord)
     if (CheckCollisionPointRec(coord, button_play))
     {
         mustClose = true;
+        std::cout << "Closed menu!" << std::endl;
     }
     else if (CheckCollisionPointRec(coord, button_settings))
     {
