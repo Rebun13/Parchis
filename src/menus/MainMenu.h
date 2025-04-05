@@ -6,13 +6,19 @@
 class MainMenu : public Menu
 {
 public:
-    virtual void draw();
-    virtual void onTouch(Vector2 coord);
+    static const unsigned char PLAY_BUTTON = 0;
+    static const unsigned char SETTINGS_BUTTON = 1;
+    static const unsigned char EXIT_BUTTON = 2;
+
+    MainMenu();
+    ~MainMenu();
+    void draw();
+    unsigned char onTouch(Vector2 coord);
 
 private:
     const Rectangle button_play = {100, 200, 200, 50};
     const Rectangle button_settings = {100, 300, 200, 50};
     const Rectangle button_exit = {100, 400, 200, 50};
 
-    bool mustClose = false;
+    Font font;
 };

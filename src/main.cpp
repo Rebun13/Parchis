@@ -5,8 +5,6 @@
 #include <iostream>
 #include <cmath>
 #include "raylib.h"
-#include "./menus/Menu.h"
-#include "./menus/MainMenu.h"
 #include "./core/colors.h"
 #include "./core/game.h"
 
@@ -25,17 +23,14 @@ int main()
 
 	// Utility function from resource_dir.h to find the resources folder and set it as the current working directory so we can load from it
 	SearchAndSetResourceDir("resources");
-	Font font = LoadFontEx("fonts/AfterARain.otf", 64, 0, 0);
+	Font font = LoadFont("fonts/VT323.ttf");
 
 	loadingScreen(font);
 
 	Game game = Game();
+	game.state_ = &Game::menu;
+	game.state_->init();
 
-	std::stack<std::unique_ptr<Menu>> menus;
-	menus.push(std::unique_ptr<Menu>(new MainMenu()));
-
-	std::cout << "Menu size begin:" << menus.size() << std::endl;
-	
 	// game loop
 	while (!WindowShouldClose()) // run the loop untill the user presses ESCAPE or presses the Close button on the window
 	{
@@ -44,42 +39,16 @@ int main()
 		{
 			// Vector2 touchPoint = GetTouchPosition(0);
 			Vector2 touchPoint = GetMousePosition();
-			if (!menus.empty())
-			{
-				menus.top()->onTouch(touchPoint);
-			}
-			else
-			{
-				// game things
-			}
+			game.handleInput(touchPoint);
 		}
 
 		// Update
-		if (!menus.empty() && menus.top()->menuMustClose())
-		{
-			menus.pop();
-			std::cout << "Closed menu" << std::endl;
-		}
 
 		// drawing
 		BeginDrawing();
 		ClearBackground(bgColor);
-		// debug
-		if (menus.empty())
-		{
-			DrawText("No menu", 0, 0, 20, WHITE);
-		}
-		else
-		{
-			DrawText(menus.top()->menuMustClose() ? "Closing" : "Menu should be here", 0, 0, 20, WHITE);
-		}
 		// Draw game
 		game.draw();
-		// Draw top menu
-		if (!menus.empty())
-		{
-			menus.top()->draw();
-		}
 
 		// end the frame and get ready for the next one  (display frame, poll input, etc...)
 		EndDrawing();
@@ -95,7 +64,7 @@ int main()
 void loadingScreen(Font font)
 {
 	float elapsedTime = 0;
-	int opacity = 0;
+	unsigned char opacity = 0;
 
 	while (elapsedTime < 6.0f)
 	{
@@ -113,9 +82,9 @@ void loadingScreen(Font font)
 		Color color = {255, 255, 255, opacity};
 		BeginDrawing();
 		ClearBackground(bgColor);
-		DrawTextEx(font, "PARCHIS", {110, 200}, 60, 5, color);
-		DrawTextEx(font, "Estudio CEIVE", {100, 600}, 35, 5, color);
-		DrawTextEx(font, "by Rebun", {180, 640}, 15, 5, color);
+		DrawTextEx(font, "PARCHIS", {107, 220}, 90, 5, color);
+		DrawTextEx(font, "Estudio CEIVE", {151, 600}, 35, 5, color);
+		DrawTextEx(font, "by Rebun", {205, 645}, 20, 5, color);
 		EndDrawing();
 	}
 }

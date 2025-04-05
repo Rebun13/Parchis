@@ -1,13 +1,15 @@
 #include "Game.h"
 #include "raylib.h"
+#include "./gameState.h"
 
 Game::Game()
 {
-    // state_ = &loading;
+    
 }
 
 void Game::draw()
 {
+    state_->draw();
     // draw board
 
     // draw players
@@ -15,4 +17,8 @@ void Game::draw()
         // draw tokens
 
     // draw UI
+}
+
+void Game::handleInput(Vector2 coord) {
+    state_->handleInput(coord, *this);
 }
