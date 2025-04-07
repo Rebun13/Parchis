@@ -1,4 +1,4 @@
-#include "MainMenu.h"
+#include "mainMenu.h"
 #include "raylib.h"
 #include <iostream>
 
@@ -14,9 +14,9 @@ MainMenu::MainMenu()
 void MainMenu::draw()
 {
     // Draw buttons
-    DrawRectangleRounded(button_play, 3, 8, RED);
-    DrawRectangleRounded(button_settings, 3, 8, GREEN);
-    DrawRectangleRounded(button_exit, 3, 8, YELLOW);
+    DrawRectangleRounded(button_play, 0.3, 8, RED);
+    DrawRectangleRounded(button_settings, 0.3, 8, GREEN);
+    DrawRectangleRounded(button_exit, 0.3, 8, YELLOW);
 
     // Draw button text
     DrawTextEx(font, "Play", {button_play.x + 10, button_play.y + 10}, 20, 5, WHITE);

@@ -1,7 +1,8 @@
 #include "gameState.h"
 #include "raylib.h"
 #include "./game.h"
-#include "menus/MainMenu.h"
+#include "menus/mainMenu.h"
+#include "menus/settingsMenu.h"
 
 MenuState::~MenuState()
 {
@@ -40,7 +41,48 @@ void MenuState::update(Game &game)
 
 void MenuState::draw()
 {
-    if(!menu) {
+    if (!menu)
+    {
+        init();
+    }
+    menu->draw();
+}
+
+void SettingsState::init()
+{
+    menu = new SettingsMenu();
+}
+
+SettingsState::~SettingsState()
+{
+    delete menu;
+}
+
+void SettingsState::handleInput(Vector2 coord, Game &game)
+{
+    unsigned char pressedButton = menu->onTouch(coord);
+    switch (pressedButton)
+    {
+    case SettingsMenu::SAVE_BUTTON:
+        game.saveSettings(); // Not implemented yet
+        break;
+    case SettingsMenu::EXIT_BUTTON:
+        game.state_ = &Game::menu;
+        break;
+    default:
+        // ?
+        break;
+    }
+}
+
+void SettingsState::update(Game &game)
+{
+}
+
+void SettingsState::draw()
+{
+    if (!menu)
+    {
         init();
     }
     menu->draw();

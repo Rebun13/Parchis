@@ -31,7 +31,7 @@ class PlayingState : public GameState
 public:
     PlayingState() {}
     ~PlayingState() {}
-    void init() {}
+    void init() override {}
     void handleInput(Vector2 coord, Game &game) override {}
     void update(Game &game) override {}
     void draw() override {}
@@ -41,9 +41,11 @@ class SettingsState : public GameState
 {
 public:
     SettingsState() {}
-    ~SettingsState() {}
-    void init() {}
-    void handleInput(Vector2 coord, Game &game) override {}
-    void update(Game &game) override {}
-    void draw() override {}
+    ~SettingsState();
+    void init() override;
+    void handleInput(Vector2 coord, Game &game) override;
+    void update(Game &game) override;
+    void draw() override;
+private:
+    Menu *menu;
 };

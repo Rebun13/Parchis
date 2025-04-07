@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Menu.h"
+#include "menu.h"
 #include "raylib.h"
 
 class MainMenu : public Menu

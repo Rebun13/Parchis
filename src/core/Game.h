@@ -14,6 +14,7 @@ public:
   void handleInput(Vector2 coord);
   void draw();
   void beginGame() {};
+  void saveSettings() {} // TODO: add arguments and save using settings::saveSettings()
   GameState *state_;
 
 private:
