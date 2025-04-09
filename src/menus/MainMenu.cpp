@@ -1,47 +1,69 @@
+#define RAYGUI_IMPLEMENTATION
+
+#include "raygui.h"
 #include "mainMenu.h"
-#include "raylib.h"
+
 #include <iostream>
 
-MainMenu::~MainMenu() {
+MainMenu::~MainMenu()
+{
     UnloadFont(font);
 }
 
 MainMenu::MainMenu()
 {
     font = LoadFont("fonts/JetSet-8j1J.ttf");
-	titleSize = MeasureTextEx(font, title, 90, 5);
+    titleSize = MeasureTextEx(font, title, 90, 5);
 }
 
 void MainMenu::draw()
 {
     DrawTextEx(font, title, {(480 - titleSize.x) / 2, 100}, 90, 5, {255, 255, 255, 255});
-    // Draw buttons
-    DrawRectangleRounded(button_play, 0.3, 8, RED);
-    DrawRectangleRounded(button_settings, 0.3, 8, GREEN);
-    DrawRectangleRounded(button_exit, 0.3, 8, YELLOW);
 
-    // Draw button text
-    DrawTextEx(font, "Play", {button_play.x + 10, button_play.y + 10}, 20, 5, WHITE);
-    DrawTextEx(font, "Settings", {button_settings.x + 10, button_settings.y + 10}, 20, 5, WHITE);
-    DrawTextEx(font, "Exit", {button_exit.x + 10, button_exit.y + 10}, 20, 5, WHITE);
+    if (GuiButton({(480 - titleSize.x) / 2, buttonPlay_y, titleSize.x, titleSize.y}, playButtonText))
+    {
+        playButtonClicked = true;
+        std::cout << "PLAY" << std::endl;
+    }
+    if (GuiButton({(480 - titleSize.x) / 2, buttonSettings_y, titleSize.x, titleSize.y}, settingsButtonText))
+    {
+        settingsButtonClicked = true;
+        std::cout << "SETTINGS" << std::endl;
+    }
+    if (GuiButton({(480 - titleSize.x) / 2, buttonExit_y, titleSize.x, titleSize.y}, exitButtonText))
+    {
+        exitButtonClicked = true;
+        std::cout << "EXIT" << std::endl;
+    }
 }
 
-unsigned char MainMenu::onTouch(Vector2 coord)
+unsigned char MainMenu::onTouch()
 {
-    if (CheckCollisionPointRec(coord, button_play))
+    if (playButtonClicked)
     {
         // TODO: play sound
+        reset();
         return PLAY_BUTTON;
     }
-    else if (CheckCollisionPointRec(coord, button_settings))
+    else if (settingsButtonClicked)
     {
         // TODO: play sound
+        reset();
         return SETTINGS_BUTTON;
     }
-    else if (CheckCollisionPointRec(coord, button_exit))
+    else if (exitButtonClicked)
     {
         // TODO: play sound
+        reset();
         return EXIT_BUTTON;
     }
     return -1;
+}
+
+void MainMenu::reset()
+{
+    std::cout << "RESET" << std::endl;
+    playButtonClicked = false;
+    settingsButtonClicked = false;
+    exitButtonClicked = false;
 }

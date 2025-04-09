@@ -13,6 +13,7 @@ public:
   Game();
   void handleInput(Vector2 coord);
   void draw();
+  void update();
   void beginGame() {};
   bool gameShouldClose();
   void setClose_();

@@ -10,6 +10,7 @@
 // Copyright (c) 2020-2025 raylib technologies (@raylibtech)                    //
 //                                                                              //
 //////////////////////////////////////////////////////////////////////////////////
+#pragma once
 
 #define DARK_STYLE_PROPS_COUNT  16
 

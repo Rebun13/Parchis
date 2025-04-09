@@ -11,8 +11,9 @@ public:
 
     SettingsMenu();
     ~SettingsMenu();
-    void draw();
-    unsigned char onTouch(Vector2 coord);
+    void draw() override;
+    unsigned char onTouch() override;
+    void reset() override;
 
 private:
     Vector2 volumeContainerAnchor = {48, 120};

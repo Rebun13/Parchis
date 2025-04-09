@@ -12,16 +12,24 @@ public:
 
     MainMenu();
     ~MainMenu();
-    void draw();
-    unsigned char onTouch(Vector2 coord);
+    void draw() override;
+    unsigned char onTouch() override;
+    void reset() override;
 
 private:
     Vector2 titleSize;
     const char* title = "PARCHIS";
+    const char* playButtonText = "PLAY";
+    const char* settingsButtonText = "SETTINGS";
+    const char* exitButtonText = "EXIT";
 
-    const Rectangle button_play = {100, 200, 200, 50};
-    const Rectangle button_settings = {100, 300, 200, 50};
-    const Rectangle button_exit = {100, 400, 200, 50};
+    const float buttonPlay_y = 200.f;
+    const float buttonSettings_y = 300.f;
+    const float buttonExit_y = 400.f;
+
+    bool playButtonClicked = false;
+    bool settingsButtonClicked = false;
+    bool exitButtonClicked = false;
 
     Font font;
 };

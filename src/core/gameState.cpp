@@ -3,6 +3,7 @@
 #include "./game.h"
 #include "menus/mainMenu.h"
 #include "menus/settingsMenu.h"
+
 MenuState::~MenuState()
 {
     delete menu;
@@ -15,7 +16,12 @@ void MenuState::init()
 
 void MenuState::handleInput(Vector2 coord, Game &game)
 {
-    unsigned char pressedButton = menu->onTouch(coord);
+    
+}
+
+void MenuState::update(Game &game)
+{
+    unsigned char pressedButton = menu->onTouch();
     switch (pressedButton)
     {
     case MainMenu::PLAY_BUTTON:
@@ -31,11 +37,6 @@ void MenuState::handleInput(Vector2 coord, Game &game)
         // ?
         break;
     }
-}
-
-void MenuState::update(Game &game)
-{
-    // TODO
 }
 
 void MenuState::draw()
@@ -59,7 +60,12 @@ SettingsState::~SettingsState()
 
 void SettingsState::handleInput(Vector2 coord, Game &game)
 {
-    unsigned char pressedButton = menu->onTouch(coord);
+    
+}
+
+void SettingsState::update(Game &game)
+{
+    unsigned char pressedButton = menu->onTouch();
     switch (pressedButton)
     {
     case SettingsMenu::SAVE_BUTTON:
@@ -72,10 +78,6 @@ void SettingsState::handleInput(Vector2 coord, Game &game)
         // ?
         break;
     }
-}
-
-void SettingsState::update(Game &game)
-{
 }
 
 void SettingsState::draw()

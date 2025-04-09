@@ -20,7 +20,11 @@ void Game::draw()
 }
 
 void Game::handleInput(Vector2 coord) {
-    state_->handleInput(coord, *this);
+    // state_->handleInput(coord, *this);
+}
+
+void Game::update() {
+    state_->update(*this);
 }
 
 bool Game::gameShouldClose() {

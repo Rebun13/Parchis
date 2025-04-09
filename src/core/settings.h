@@ -1,3 +1,5 @@
+#pragma once
+
 enum Setting {
     GENERAL_VOLUME,
     MUSIC_VOLUME,

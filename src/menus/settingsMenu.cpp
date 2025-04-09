@@ -1,8 +1,5 @@
-#include "raylib.h"
+// #define RAYGUI_IMPLEMENTATION
 
-#define RAYGUI_IMPLEMENTATION
-
-#include "settingsMenu.h"
 #include "raygui.h"
 #include "settingsMenu.h"
 #include "core/settings.h"
@@ -42,17 +39,24 @@ void SettingsMenu::draw()
     }
 }
 
-unsigned char SettingsMenu::onTouch(Vector2 coord)
+unsigned char SettingsMenu::onTouch()
 {
     if (saveButtonClicked /*|| CheckCollisionPointRec(coord, saveButton)*/)
     {
         // TODO: play sound
+        reset();
         return SAVE_BUTTON;
     }
     else if (exitButtonClicked /* || CheckCollisionPointRec(coord, exitButton)*/)
     {
         // TODO: play sound
+        reset();
         return EXIT_BUTTON;
     }
     return -1;
+}
+
+void SettingsMenu::reset(){
+    saveButtonClicked = false;
+    exitButtonClicked = false;
 }

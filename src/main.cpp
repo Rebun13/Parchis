@@ -45,6 +45,7 @@ int main()
 		}
 
 		// Update
+		game.update();
 
 		// drawing
 		BeginDrawing();
