@@ -19,6 +19,7 @@ public:
   void setClose_();
   void saveSettings() {} // TODO: add arguments and save using settings::saveSettings()
   GameState *state_;
+  GameState *prevState = nullptr;
 
 private:
   // vector<Player> players;

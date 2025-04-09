@@ -3,6 +3,7 @@
 #include "./game.h"
 #include "menus/mainMenu.h"
 #include "menus/settingsMenu.h"
+#include "menus/playingMenu.h"
 #include "gameObjects/board.h"
 
 MenuState::~MenuState()
@@ -17,7 +18,6 @@ void MenuState::init()
 
 void MenuState::handleInput(Vector2 coord, Game &game)
 {
-    
 }
 
 void MenuState::update(Game &game)
@@ -27,9 +27,13 @@ void MenuState::update(Game &game)
     {
     case MainMenu::PLAY_BUTTON:
         game.state_ = &Game::playing;
+        game.state_->init();
+        game.prevState = this;
         break;
     case MainMenu::SETTINGS_BUTTON:
         game.state_ = &Game::settings;
+        game.state_->init();
+        game.prevState = this;
         break;
     case MainMenu::EXIT_BUTTON:
         game.setClose_();
@@ -49,24 +53,45 @@ void MenuState::draw()
     menu->draw();
 }
 
-void PlayingState::init() {
+/* PLAYING */
+void PlayingState::init()
+{
     board = new Board();
-    board->init(); 
+    menu = new PlayingMenu;
+    board->init();
 }
 
-/* PLAYING */
-void PlayingState::handleInput(Vector2 coord, Game &game) {
+PlayingState::~PlayingState() {
+    delete menu;
+}
+
+void PlayingState::handleInput(Vector2 coord, Game &game)
+{
     board->handleInput(coord, game);
 }
 
-void PlayingState::update(Game &game) {
+void PlayingState::update(Game &game)
+{
+    unsigned char pressedButton = menu->onTouch();
+    switch (pressedButton)
+    {
+    case PlayingMenu::SETTINGS_BUTTON:
+        game.state_ = &Game::settings;
+        game.state_->init();
+        game.prevState = this;
+        break;
+    default:
+        // ?
+        break;
+    }
     board->update(game);
 }
 
-void PlayingState::draw() {
+void PlayingState::draw()
+{
+    menu->draw();
     board->draw();
 }
-
 
 /* SETTINGS */
 
@@ -82,7 +107,6 @@ SettingsState::~SettingsState()
 
 void SettingsState::handleInput(Vector2 coord, Game &game)
 {
-    
 }
 
 void SettingsState::update(Game &game)
@@ -94,7 +118,9 @@ void SettingsState::update(Game &game)
         game.saveSettings(); // Not implemented yet
         break;
     case SettingsMenu::EXIT_BUTTON:
-        game.state_ = &Game::menu;
+        game.state_ = game.prevState;
+        game.state_->init();
+        game.prevState = this;
         break;
     default:
         // ?

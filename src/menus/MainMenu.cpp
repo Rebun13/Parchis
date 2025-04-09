@@ -20,17 +20,17 @@ void MainMenu::draw()
 {
     DrawTextEx(font, title, {(480 - titleSize.x) / 2, 100}, 90, 5, {255, 255, 255, 255});
 
-    if (GuiButton({(480 - titleSize.x) / 2, buttonPlay_y, titleSize.x, titleSize.y}, playButtonText))
+    if (GuiButton({(480 - titleSize.x) / 2, buttonPlay_y, titleSize.x, buttonHeight}, playButtonText))
     {
         playButtonClicked = true;
         std::cout << "PLAY" << std::endl;
     }
-    if (GuiButton({(480 - titleSize.x) / 2, buttonSettings_y, titleSize.x, titleSize.y}, settingsButtonText))
+    if (GuiButton({(480 - titleSize.x) / 2, buttonSettings_y, titleSize.x, buttonHeight}, settingsButtonText))
     {
         settingsButtonClicked = true;
         std::cout << "SETTINGS" << std::endl;
     }
-    if (GuiButton({(480 - titleSize.x) / 2, buttonExit_y, titleSize.x, titleSize.y}, exitButtonText))
+    if (GuiButton({(480 - titleSize.x) / 2, buttonExit_y, titleSize.x, buttonHeight}, exitButtonText))
     {
         exitButtonClicked = true;
         std::cout << "EXIT" << std::endl;

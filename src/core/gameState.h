@@ -2,6 +2,7 @@
 #include "raylib.h"
 
 class Game;
+class Menu;
 
 class GameState
 {
@@ -23,20 +24,23 @@ public:
     void draw() override;
 
 private:
-    class Menu *menu;
+    Menu *menu;
 };
 
 class PlayingState : public GameState
 {
 public:
     PlayingState() {}
-    ~PlayingState() {}
-    void init() override ;
+    ~PlayingState();
+    void init() override;
     void handleInput(Vector2 coord, Game &game) override;
     void update(Game &game) override;
     void draw() override;
+
 private:
     class Board *board;
+
+    Menu *menu;
 };
 
 class SettingsState : public GameState
@@ -48,6 +52,7 @@ public:
     void handleInput(Vector2 coord, Game &game) override;
     void update(Game &game) override;
     void draw() override;
+
 private:
     Menu *menu;
 };
