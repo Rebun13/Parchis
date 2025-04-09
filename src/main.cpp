@@ -7,6 +7,7 @@
 #include "raylib.h"
 #include "./core/colors.h"
 #include "./core/game.h"
+#include "style/styleLoader.h"
 
 #include "resource_dir.h" // utility header for SearchAndSetResourceDir
 
@@ -23,7 +24,8 @@ int main()
 
 	// Utility function from resource_dir.h to find the resources folder and set it as the current working directory so we can load from it
 	SearchAndSetResourceDir("resources");
-	Font font = LoadFont("fonts/VT323.ttf");
+	GuiLoadStyleDark();
+	Font font = LoadFont("fonts/JetSet-8j1J.ttf");
 
 	loadingScreen(font);
 
