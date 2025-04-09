@@ -3,6 +3,7 @@
 #include "./game.h"
 #include "menus/mainMenu.h"
 #include "menus/settingsMenu.h"
+#include "gameObjects/board.h"
 
 MenuState::~MenuState()
 {
@@ -47,6 +48,27 @@ void MenuState::draw()
     }
     menu->draw();
 }
+
+void PlayingState::init() {
+    board = new Board();
+    board->init(); 
+}
+
+/* PLAYING */
+void PlayingState::handleInput(Vector2 coord, Game &game) {
+    board->handleInput(coord, game);
+}
+
+void PlayingState::update(Game &game) {
+    board->update(game);
+}
+
+void PlayingState::draw() {
+    board->draw();
+}
+
+
+/* SETTINGS */
 
 void SettingsState::init()
 {
