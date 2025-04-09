@@ -8,11 +8,13 @@ MainMenu::~MainMenu() {
 
 MainMenu::MainMenu()
 {
-    font = LoadFont("fonts/VT323.ttf");
+    font = LoadFont("fonts/JetSet-8j1J.ttf");
+	titleSize = MeasureTextEx(font, title, 90, 5);
 }
 
 void MainMenu::draw()
 {
+    DrawTextEx(font, title, {(480 - titleSize.x) / 2, 100}, 90, 5, {255, 255, 255, 255});
     // Draw buttons
     DrawRectangleRounded(button_play, 0.3, 8, RED);
     DrawRectangleRounded(button_settings, 0.3, 8, GREEN);

@@ -16,6 +16,9 @@ public:
     unsigned char onTouch(Vector2 coord);
 
 private:
+    Vector2 titleSize;
+    const char* title = "PARCHIS";
+
     const Rectangle button_play = {100, 200, 200, 50};
     const Rectangle button_settings = {100, 300, 200, 50};
     const Rectangle button_exit = {100, 400, 200, 50};

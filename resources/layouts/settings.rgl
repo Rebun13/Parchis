@@ -9,14 +9,14 @@
 #
 r 0 40 -1 -1
 a 001 anchor01 72 48 1
-a 002 anchor02 120 168 1
+a 002 anchor02 120 160 1
 c 000 0 WindowBox000 0 0 480 736 1 SAMPLE TEXT
-c 001 1 volumeGroup 0 0 384 240 2 VOLUME
+c 001 1 volumeGroup 0 8 384 240 2 VOLUME
 c 002 5 BackButton 360 48 72 48 1 BACK
 c 003 5 saveButton 48 384 384 48 1 SAVE
-c 004 17 generalVolume 24 48 336 24 2 
-c 005 17 musicVolume 24 120 336 24 2 
-c 006 17 fxVolume 24 192 336 24 2 
-c 007 4 musicVolumeLabel 24 96 336 24 2 Music Volume
-c 008 4 fxVolumeLabel 24 168 336 24 2 FX Volume
-c 009 4 generalVolumeLabel 24 24 336 24 2 General Volume
+c 004 17 generalVolume 24 56 336 24 2 
+c 005 17 musicVolume 24 128 336 24 2 
+c 006 17 fxVolume 24 200 336 24 2 
+c 007 4 musicVolumeLabel 24 104 336 24 2 Music Volume
+c 008 4 fxVolumeLabel 24 176 336 24 2 FX Volume
+c 009 4 Label009 24 32 336 24 2 General Volume
