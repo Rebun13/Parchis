@@ -14,10 +14,13 @@ public:
   void handleInput(Vector2 coord);
   void draw();
   void beginGame() {};
+  bool gameShouldClose();
+  void setClose_();
   void saveSettings() {} // TODO: add arguments and save using settings::saveSettings()
   GameState *state_;
 
 private:
   // vector<Player> players;
   //
+  bool close = false;
 };

@@ -3,7 +3,6 @@
 #include "./game.h"
 #include "menus/mainMenu.h"
 #include "menus/settingsMenu.h"
-
 MenuState::~MenuState()
 {
     delete menu;
@@ -26,7 +25,7 @@ void MenuState::handleInput(Vector2 coord, Game &game)
         game.state_ = &Game::settings;
         break;
     case MainMenu::EXIT_BUTTON:
-        // TODO: close game
+        game.setClose_();
         break;
     default:
         // ?

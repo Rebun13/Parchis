@@ -15,22 +15,33 @@ public:
     unsigned char onTouch(Vector2 coord);
 
 private:
+    Vector2 volumeContainerAnchor = {48, 120};
     // Volume
-    Rectangle volumeContainer = {70, 90, 390, 370};
+    Rectangle volumeContainer = {volumeContainerAnchor.x, volumeContainerAnchor.y, 384, 240};
+
     float generalVolume = 1.0f;
-    const Vector2 generalVolumeLabelCoord = {80, 100};
-    const Rectangle generalVolumeSlider = {80, 140, 300, 20};
+    const Vector2 generalVolumeLabelCoord = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 24};
+    const Rectangle generalVolumeSlider = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 48, 336, 24};
+
     float musicVolume = 1.0f;
-    const Vector2 musicVolumeLabelCoord = {80, 200};
-    const Rectangle musicVolumeSlider = {80, 240, 300, 20};
+    const Vector2 musicVolumeLabelCoord = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 96};
+    const Rectangle musicVolumeSlider = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 120, 336, 24};
+
     float fxVolume = 1.0f;
-    const Vector2 fxVolumeLabelCoord = {80, 300};
-    const Rectangle fxVolumeSlider = {80, 340, 300, 20};
+    const Vector2 fxVolumeLabelCoord = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 168};
+    const Rectangle fxVolumeSlider = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 192, 336, 24};
     // Buttons
-    const Rectangle saveButton = {300, 400, 80, 50};
-    int save = 0;
-    const Rectangle exitButton = {10, 10, 50, 50};
-    int exit = 0;
+    const Rectangle saveButton = {48, 384, 384, 48};
+    bool saveButtonClicked = false;
+    const Rectangle exitButton = {360, 48, 72, 48};
+    bool exitButtonClicked = false;
+    // Labels
+    const char *volumeContainerText = "VOLUME";
+    const char *BackButtonText = "BACK";
+    const char *saveButtonText = "SAVE";
+    const char *musicVolumeLabelText = "Music Volume";
+    const char *fxVolumeLabelText = "FX Volume";
+    const char *generalVolumeLabelText = "General Volume";
 
     Font font;
 };

@@ -22,3 +22,11 @@ void Game::draw()
 void Game::handleInput(Vector2 coord) {
     state_->handleInput(coord, *this);
 }
+
+bool Game::gameShouldClose() {
+    return close;
+}
+
+void Game::setClose_() {
+    close = true;
+}

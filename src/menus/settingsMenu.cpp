@@ -9,10 +9,10 @@
 
 SettingsMenu::SettingsMenu()
 {
-    font = LoadFont("fonts/VT323.ttf");    
-    generalVolume = (float) Settings::getSetting(GENERAL_VOLUME) / 100.f;
-    musicVolume = (float) Settings::getSetting(MUSIC_VOLUME) / 100.f;
-    fxVolume = (float) Settings::getSetting(FX_VOLUME) / 100.f;
+    font = LoadFont("fonts/VT323.ttf");
+    generalVolume = (float)Settings::getSetting(GENERAL_VOLUME) / 100.f;
+    musicVolume = (float)Settings::getSetting(MUSIC_VOLUME) / 100.f;
+    fxVolume = (float)Settings::getSetting(FX_VOLUME) / 100.f;
 }
 
 SettingsMenu::~SettingsMenu()
@@ -22,30 +22,34 @@ SettingsMenu::~SettingsMenu()
 
 void SettingsMenu::draw()
 {
-    GuiButton(exitButton, "Exit");
+    if(GuiButton(exitButton, BackButtonText)) {
+        exitButtonClicked = true;
+    }
 
-    GuiGroupBox(volumeContainer, "Volume");
-    
-    DrawTextEx(font, "General Volume", generalVolumeLabelCoord, 20, 5, WHITE);
-    GuiSliderBar(generalVolumeSlider, "", "", &generalVolume, 0, 1);
+    GuiGroupBox(volumeContainer, volumeContainerText);
 
-    DrawTextEx(font, "Music Volume", musicVolumeLabelCoord, 20, 5, WHITE);
-    GuiSliderBar(musicVolumeSlider, "", "", &musicVolume, 0, 1);
+    DrawTextEx(font, generalVolumeLabelText, generalVolumeLabelCoord, 20, 5, WHITE);
+    GuiSliderBar(generalVolumeSlider, "", "", &generalVolume, 0.f, 1.f);
 
-    DrawTextEx(font, "FX Volume", fxVolumeLabelCoord, 20, 5, WHITE);
-    GuiSliderBar(fxVolumeSlider, "", "", &fxVolume, 0, 1);
+    DrawTextEx(font, musicVolumeLabelText, musicVolumeLabelCoord, 20, 5, WHITE);
+    GuiSliderBar(musicVolumeSlider, "", "", &musicVolume, 0.f, 1.f);
 
-    GuiButton(saveButton, "Save");
+    DrawTextEx(font, fxVolumeLabelText, fxVolumeLabelCoord, 20, 5, WHITE);
+    GuiSliderBar(fxVolumeSlider, "", "", &fxVolume, 0.f, 1.f);
+
+    if (GuiButton(saveButton, saveButtonText)) {
+        saveButtonClicked = true;
+    }
 }
 
 unsigned char SettingsMenu::onTouch(Vector2 coord)
 {
-    if (save || CheckCollisionPointRec(coord, saveButton))
+    if (saveButtonClicked /*|| CheckCollisionPointRec(coord, saveButton)*/)
     {
         // TODO: play sound
         return SAVE_BUTTON;
     }
-    else if (exit || CheckCollisionPointRec(coord, exitButton))
+    else if (exitButtonClicked /* || CheckCollisionPointRec(coord, exitButton)*/)
     {
         // TODO: play sound
         return EXIT_BUTTON;

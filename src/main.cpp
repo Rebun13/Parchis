@@ -34,7 +34,7 @@ int main()
 	game.state_->init();
 
 	// game loop
-	while (!WindowShouldClose()) // run the loop untill the user presses ESCAPE or presses the Close button on the window
+	while (!(WindowShouldClose() || game.gameShouldClose())) // run the loop untill the user presses ESCAPE or presses the Close button on the window
 	{
 		// Handle input
 		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
