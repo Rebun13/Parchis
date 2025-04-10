@@ -1,9 +1,12 @@
 #include "playingMenu.h"
+#include <iostream>
 
 PlayingMenu::PlayingMenu()
 {
     font = LoadFont("fonts/JetSet-8j1J.ttf");
-    exitWindowTextSize = MeasureTextEx(font, exitWindowText, 14, 1);
+    exitWindowTextSize = MeasureTextEx(font, exitWindowText, 16, 1);
+    std::cout << "TEXT SIZE: " << exitWindowTextSize.x << std::endl;
+    exitWindowTextPosition.x = (480.f - exitWindowTextSize.x) / 2.f;
 }
 
 PlayingMenu::~PlayingMenu()
@@ -23,13 +26,16 @@ void PlayingMenu::draw()
         settingsButtonClicked = true;
     }
 
-    if(exitButtonClicked) {
+    if (exitButtonClicked)
+    {
         GuiPanel(exitWindow, "");
-        GuiLabel({(480 - exitWindowTextSize.x) / 2, exitWindowTextPosition.y}, exitWindowText);
-        if(GuiButton(buttonSurrender, surrenderButtonText)) {
+        DrawTextEx(font, exitWindowText, exitWindowTextPosition, 16, 1, GetColor(GuiGetStyle(DEFAULT, TEXT_COLOR_NORMAL)));
+        if (GuiButton(buttonSurrender, surrenderButtonText))
+        {
             surrenderButtonClicked = true;
         };
-        if(GuiButton(buttonCancel, cancelButtonText)) {
+        if (GuiButton(buttonCancel, cancelButtonText))
+        {
             cancelButtonClicked = true;
         };
     }
@@ -47,7 +53,8 @@ unsigned char PlayingMenu::onTouch()
         reset();
         return SETTINGS_BUTTON;
     }
-    if(cancelButtonClicked) {
+    if (cancelButtonClicked)
+    {
         reset();
     }
     return -1;

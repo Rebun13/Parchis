@@ -80,6 +80,11 @@ void PlayingState::update(Game &game)
         game.state_->init();
         game.prevState = this;
         break;
+    case PlayingMenu::EXIT_BUTTON:
+        // TODO: disconnect from game
+        game.state_ = &Game::menu;
+        game.state_->init();
+        game.prevState = this;
     default:
         // ?
         break;
@@ -89,8 +94,8 @@ void PlayingState::update(Game &game)
 
 void PlayingState::draw()
 {
-    menu->draw();
     board->draw();
+    menu->draw();
 }
 
 /* SETTINGS */
