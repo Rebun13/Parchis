@@ -1,11 +1,9 @@
 #include "playingMenu.h"
-#include <iostream>
 
 PlayingMenu::PlayingMenu()
 {
     font = LoadFont("fonts/JetSet-8j1J.ttf");
     exitWindowTextSize = MeasureTextEx(font, exitWindowText, 16, 1);
-    std::cout << "TEXT SIZE: " << exitWindowTextSize.x << std::endl;
     exitWindowTextPosition.x = (480.f - exitWindowTextSize.x) / 2.f;
 }
 
