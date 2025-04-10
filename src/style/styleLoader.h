@@ -1,6 +1,10 @@
 #pragma once
 
+#define RAYGUI_IMPLEMENTATION
+#define RAYGUI_CUSTOM_ICONS
+#include "ricons.h"
 #include "raygui.h"
+
 #include "dark.h"
 #include <stdlib.h> // for malloc
 #include <cstring>  // for memcpy

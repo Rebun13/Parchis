@@ -49,7 +49,7 @@ int main()
 
 		// drawing
 		BeginDrawing();
-		ClearBackground(bgColor);
+		ClearBackground(GetColor(GuiGetStyle(DEFAULT, BACKGROUND_COLOR)));
 		// Draw game
 		game.draw();
 
@@ -86,7 +86,7 @@ void loadingScreen(Font font)
 
 		Color color = {255, 255, 255, opacity};
 		BeginDrawing();
-		ClearBackground(bgColor);
+		ClearBackground(GetColor(GuiGetStyle(DEFAULT, BACKGROUND_COLOR)));
 		DrawTextEx(font, "PARCHIS", {(480 - sizeA.x) / 2, 220}, 90, 5, {255, 255, 255, 255});
 		DrawTextEx(font, "Estudio CEIVE", {(480 - sizeB.x) / 2, 600}, 35, 5, color);
 		DrawTextEx(font, "by Rebun", {(480 - sizeC.x) / 2, 645}, 20, 5, color);
@@ -96,7 +96,7 @@ void loadingScreen(Font font)
 	for (float elapsedTime = 0.f; elapsedTime < animationDuration; elapsedTime += GetFrameTime())
 	{
 		BeginDrawing();
-		ClearBackground(bgColor);
+		ClearBackground(GetColor(GuiGetStyle(DEFAULT, BACKGROUND_COLOR)));
 		DrawTextEx(font, "PARCHIS", {(480 - sizeA.x) / 2, (220 - elapsedTime * 120 / animationDuration)}, 90, 5, {255, 255, 255, 255});
 		EndDrawing();
 	}

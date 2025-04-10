@@ -1,6 +1,3 @@
-#define RAYGUI_IMPLEMENTATION
-
-#include "raygui.h"
 #include "mainMenu.h"
 
 #include <iostream>

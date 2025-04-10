@@ -1,7 +1,7 @@
 #pragma once
 
-#include "menu.h"
 #include "raylib.h"
+#include "menu.h"
 
 class SettingsMenu : public Menu
 {
@@ -38,7 +38,7 @@ private:
     bool exitButtonClicked = false;
     // Labels
     const char *volumeContainerText = "VOLUME";
-    const char *BackButtonText = "BACK";
+    const char *BackButtonText = GuiIconText(ICON_BACK, "");
     const char *saveButtonText = "SAVE";
     const char *musicVolumeLabelText = "Music Volume";
     const char *fxVolumeLabelText = "FX Volume";

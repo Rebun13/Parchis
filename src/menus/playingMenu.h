@@ -16,7 +16,7 @@ public:
     void reset() override;
 
 private:
-    const char* settingsButtonText = "SETTINGS";
+    const char* settingsButtonText = GuiIconText(ICON_SETTINGS, "");
     const char* exitButtonText = "EXIT";
 
     const Rectangle buttonSettings = {400, 20, 60, 60};

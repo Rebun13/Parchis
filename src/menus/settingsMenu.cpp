@@ -1,6 +1,3 @@
-// #define RAYGUI_IMPLEMENTATION
-
-#include "raygui.h"
 #include "settingsMenu.h"
 #include "core/settings.h"
 
