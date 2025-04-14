@@ -1,20 +1,15 @@
 #include "box.h"
 #include <stdexcept>
+#include <cmath>
 
-Vector2 Box::getPos()
+Vector2 Box::getCenterPos()
 {
-    if(numTokens == 0)
-        return posA_;
-    if(numTokens == 1)
-        return posB_;
-    throw std::runtime_error("This box contains two tokens already!");
-}
-
-bool Box::hasBarrier() {
-    return numTokens == 2;
+    return {(posA_.x + posB_.x) / 2.f, (posA_.y + posB_.y) / 2.f};
 }
 
 void Box::draw(Color color)
 {
-    DrawLineStrip(&vertices_[0], vertices_.size(), color); // TODO: animation with alpha
+    double currentTime = GetTime();
+    color.a = static_cast<unsigned char>(std::round(255.0f * std::abs((1.0f - std::fmod(currentTime, 2.0)))));
+    DrawLineStrip(&vertices_[0], vertices_.size(), color);
 }
