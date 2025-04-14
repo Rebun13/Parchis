@@ -1,14 +1,17 @@
 #pragma once
 
 #include <vector>
+#include "token.h"
 
 class Player
 {
 public:
-    Player() {}
-    ~Player() {}
+    Player();
+    ~Player();
 
 private:
-    std::vector<class Token> tokens;
-    std::vector<class PowerUp> powerUps;
-}
+    std::vector<Token> tokens;
+    int tokensAtHome;
+    int tokensAtGoal;
+    // std::vector<class PowerUp> powerUps;
+};
