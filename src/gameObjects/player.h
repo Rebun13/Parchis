@@ -3,6 +3,7 @@
 #include <vector>
 #include <memory>
 #include "token.h"
+#include "client.h"
 
 class Player
 {
@@ -11,6 +12,7 @@ public:
     ~Player();
 
 private:
+    Client playerClient_;
     std::vector<std::shared_ptr<Token>> tokens_;
     int tokensAtHome;
     int tokensAtGoal;

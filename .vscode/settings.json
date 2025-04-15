@@ -92,6 +92,7 @@
 		"map": "cpp",
 		"fstream": "cpp",
 		"bitset": "cpp",
-		"regex": "cpp"
+		"regex": "cpp",
+		"xtree": "c"
 	}
 }

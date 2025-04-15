@@ -76,7 +76,7 @@ void Board::buildBoxes()
         {{342, 142}, {361, 142}, {361, 201}, {342, 201}, {352, 185}, {352, 158}, Box::REGULAR_BOX},
         {{322, 142}, {341, 142}, {341, 201}, {322, 201}, {332, 185}, {332, 158}, Box::REGULAR_BOX},
         {{302, 160}, {321, 141}, {321, 201}, {302, 201}, {312, 185}, {312, 168}, Box::REGULAR_BOX}, // corner
-    
+
         {{262, 142}, {321, 142}, {302, 161}, {262, 161}, {278, 151}, {295, 151}, Box::REGULAR_BOX}, // corner
         {{262, 122}, {321, 122}, {321, 141}, {262, 141}, {278, 131}, {305, 131}, Box::REGULAR_BOX},
         {{262, 102}, {321, 102}, {321, 121}, {262, 121}, {278, 111}, {305, 111}, Box::REGULAR_BOX},
@@ -116,7 +116,7 @@ void Board::buildBoxes()
         {{102, 262}, {121, 262}, {121, 321}, {102, 321}, {111, 278}, {111, 305}, Box::REGULAR_BOX},
         {{122, 262}, {141, 262}, {141, 321}, {122, 321}, {131, 278}, {131, 305}, Box::REGULAR_BOX},
         {{142, 262}, {162, 262}, {162, 302}, {142, 321}, {151, 278}, {151, 295}, Box::REGULAR_BOX}, // corner
-    
+
         {{161, 302}, {201, 302}, {201, 321}, {142, 322}, {185, 311}, {168, 311}, Box::REGULAR_BOX}, // corner
         {{142, 322}, {201, 322}, {201, 341}, {142, 341}, {185, 331}, {158, 331}, Box::REGULAR_BOX},
         {{142, 342}, {201, 342}, {201, 361}, {142, 361}, {185, 351}, {158, 351}, Box::REGULAR_BOX},
@@ -135,29 +135,29 @@ void Board::buildBoxes()
         {
         case Box::SAFE_BOX:
             boxes.emplace_back(std::unique_ptr<Box>(new SafeBox(
-                {(Vector2){position.x + item.v1.x, position.y + item.v1.y},
-                 (Vector2){position.x + item.v2.x, position.y + item.v2.y},
-                 (Vector2){position.x + item.v3.x, position.y + item.v3.y},
-                 (Vector2){position.x + item.v4.x, position.y + item.v4.y},
-                 (Vector2){position.x + item.v1.x, position.y + item.v1.y}},
+                {{position.x + item.v1.x, position.y + item.v1.y},
+                 {position.x + item.v2.x, position.y + item.v2.y},
+                 {position.x + item.v3.x, position.y + item.v3.y},
+                 {position.x + item.v4.x, position.y + item.v4.y},
+                 {position.x + item.v1.x, position.y + item.v1.y}},
                 {position.x + item.p1.x, position.y + item.p1.y}, {position.x + item.p2.x, position.y + item.p2.y})));
             break;
         case Box::BRANCHED_BOX:
             boxes.emplace_back(std::unique_ptr<Box>(new BranchedBox(
-                {(Vector2){position.x + item.v1.x, position.y + item.v1.y},
-                 (Vector2){position.x + item.v2.x, position.y + item.v2.y},
-                 (Vector2){position.x + item.v3.x, position.y + item.v3.y},
-                 (Vector2){position.x + item.v4.x, position.y + item.v4.y},
-                 (Vector2){position.x + item.v1.x, position.y + item.v1.y}},
+                {{position.x + item.v1.x, position.y + item.v1.y},
+                 {position.x + item.v2.x, position.y + item.v2.y},
+                 {position.x + item.v3.x, position.y + item.v3.y},
+                 {position.x + item.v4.x, position.y + item.v4.y},
+                 {position.x + item.v1.x, position.y + item.v1.y}},
                 {position.x + item.p1.x, position.y + item.p1.y}, {position.x + item.p2.x, position.y + item.p2.y}, item.branchPlayer)));
             break;
         case Box::REGULAR_BOX:
             boxes.emplace_back(std::unique_ptr<Box>(new RegularBox(
-                {(Vector2){position.x + item.v1.x, position.y + item.v1.y},
-                 (Vector2){position.x + item.v2.x, position.y + item.v2.y},
-                 (Vector2){position.x + item.v3.x, position.y + item.v3.y},
-                 (Vector2){position.x + item.v4.x, position.y + item.v4.y},
-                 (Vector2){position.x + item.v1.x, position.y + item.v1.y}},
+                {{position.x + item.v1.x, position.y + item.v1.y},
+                 {position.x + item.v2.x, position.y + item.v2.y},
+                 {position.x + item.v3.x, position.y + item.v3.y},
+                 {position.x + item.v4.x, position.y + item.v4.y},
+                 {position.x + item.v1.x, position.y + item.v1.y}},
                 {position.x + item.p1.x, position.y + item.p1.y}, {position.x + item.p2.x, position.y + item.p2.y})));
 
             break;

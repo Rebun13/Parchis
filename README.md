@@ -18,3 +18,4 @@ I don't own any of the external libraries used in this project. These are the ex
 - [JSON for modern C++](https://github.com/nlohmann/json/) by [Nlohmann](https://github.com/nlohmann/)
 - [RapidJSON](https://github.com/Tencent/rapidjson) by [Tencent](https://github.com/Tencent/)
 - [nbnet](https://github.com/nathhB/nbnet/) by [Nathhb](https://github.com/nathhB/)
+- [GCC's getopt.h](https://github.com/gcc-mirror/gcc/blob/master/include/getopt.h) by [GCC](https://github.com/gcc-mirror/gcc/)
