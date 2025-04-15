@@ -21,7 +21,6 @@ void Board::init()
 void Board::draw()
 {
     DrawTextureEx(texture, position, 0, 1, WHITE);
-    boxes[0]->draw(RED);
 }
 
 void Board::clearBoxes()

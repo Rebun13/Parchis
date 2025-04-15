@@ -60,5 +60,5 @@ public:
     BoxType getType() { return BRANCHED_BOX; }
     bool isSafe() { return true; }
 private:
-    int branchPlayer_;
+    unsigned char branchPlayer_;
 };

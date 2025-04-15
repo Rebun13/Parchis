@@ -1,16 +1,15 @@
 #include "player.h"
 
-Player::Player() {
-    tokensAtHome = 4;
+Player::Player(std::vector<std::shared_ptr<Token>> tokens) : tokens_(tokens) {
+    tokensAtHome = tokens.size();
     tokensAtGoal = 0;
-    tokens = std::vector<Token>(4, Token());
 }
 
 Player::~Player()
 {
-    for(auto &&token : tokens)
+    for(auto &&token : tokens_)
     {
-        token.~Token();
+        token.reset(); // Must alsobe called by the other objects that share this pointer
     }
-    tokens.clear();
+    tokens_.clear();
 }
