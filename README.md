@@ -19,3 +19,4 @@ I don't own any of the external libraries used in this project. These are the ex
 - [RapidJSON](https://github.com/Tencent/rapidjson) by [Tencent](https://github.com/Tencent/)
 - [nbnet](https://github.com/nathhB/nbnet/) by [Nathhb](https://github.com/nathhB/)
 - [GCC's getopt.h](https://github.com/gcc-mirror/gcc/blob/master/include/getopt.h) by [GCC](https://github.com/gcc-mirror/gcc/)
+- [stduuid](https://github.com/mariusbancila/stduuid/tree/master) by [mariusbancila](https://github.com/mariusbancila/)

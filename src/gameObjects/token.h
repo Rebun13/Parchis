@@ -11,9 +11,9 @@ public:
     void move(Vector2 newPos);
     void update();
     void draw();
-    const unsigned char playerIndex;
 private:
-    Color color_;
+    const unsigned char playerIndex_;
+    const Color color_;
     Vector2 pos_;
     Vector2 newPos_;
     float tokenSpeed = 5.0f;

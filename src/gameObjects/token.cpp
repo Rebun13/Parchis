@@ -1,7 +1,7 @@
 #include "token.h"
 #include "raylib.h"
 
-Token::Token(unsigned char playerIndex, Color color) : playerIndex(playerIndex), color_(color) {
+Token::Token(unsigned char playerIndex, Color color) : playerIndex_(playerIndex), color_(color) {
     pos_ = {-1000, -1000};
     newPos_ = pos_;
 }

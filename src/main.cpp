@@ -8,6 +8,8 @@
 #include "./core/colors.h"
 #include "./core/game.h"
 #include "style/styleLoader.h"
+#include "config.h"
+// #include "network.h"
 
 #include "resource_dir.h" // utility header for SearchAndSetResourceDir
 
@@ -19,8 +21,12 @@ int main()
 	// SetConfigFlags(FLAG_VSYNC_HINT | FLAG_WINDOW_HIGHDPI);
 
 	// Create the window and OpenGL context
-	InitWindow(480, 720, "Parchix");
-	SetTargetFPS(60);
+	InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
+	SetTargetFPS(TARGET_FPS);
+	SetTraceLogLevel(LOG_DEBUG);
+
+	// Register UDP Driver for NBnet
+	// NBN_UDP_Register();
 
 	// Utility function from resource_dir.h to find the resources folder and set it as the current working directory so we can load from it
 	SearchAndSetResourceDir("resources");

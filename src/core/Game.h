@@ -23,6 +23,5 @@ public:
 
 private:
   // vector<Player> players;
-  //
   bool close = false;
 };

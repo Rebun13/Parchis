@@ -34,13 +34,15 @@ public:
     ~PlayingState();
     void init() override;
     void handleInput(Vector2 coord, Game &game) override;
+    void handleNetwork();
     void update(Game &game) override;
     void draw() override;
 
 private:
     class Board *board;
-
+    double tick_dt;
     Menu *menu;
+    class Client *gameClient;
 };
 
 class SettingsState : public GameState

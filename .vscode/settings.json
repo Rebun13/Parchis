@@ -93,6 +93,11 @@
 		"fstream": "cpp",
 		"bitset": "cpp",
 		"regex": "cpp",
-		"xtree": "c"
+		"xtree": "c",
+		"any": "c",
+		"codecvt": "c",
+		"forward_list": "c",
+		"ranges": "c",
+		"valarray": "c"
 	}
 }
