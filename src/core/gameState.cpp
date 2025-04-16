@@ -79,10 +79,8 @@ void PlayingState::update(Game &game)
     unsigned char pressedButton = menu->onTouch();
     switch (pressedButton)
     {
-    case PlayingMenu::SETTINGS_BUTTON:
-        game.state_ = &Game::settings;
-        game.state_->init();
-        game.prevState = this;
+    case PlayingMenu::SAVE_SETTIGNS_BUTTON:
+        // TODO: get volume variables (make them public) and save them to settings file
         break;
     case PlayingMenu::EXIT_BUTTON:
         // gameClient->handleDisconnection();

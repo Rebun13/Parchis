@@ -1,5 +1,11 @@
 #include "playingMenu.h"
 
+#if defined(PLATFORM_DESKTOP)
+    #define GLSL_VERSION            330
+#else   // PLATFORM_ANDROID, PLATFORM_WEB
+    #define GLSL_VERSION            100
+#endif
+
 PlayingMenu::PlayingMenu()
 {
     font = LoadFont("fonts/JetSet-8j1J.ttf");
@@ -37,6 +43,22 @@ void PlayingMenu::draw()
             cancelButtonClicked = true;
         };
     }
+    if(settingsButtonClicked) {    
+        if(GuiWindowBox(settingsContainer, settingsContainerText)) {
+            settingsButtonClicked = false;
+            // TODO: save applied settings
+            saveButtonClicked = true;
+        }
+    
+        DrawTextEx(font, generalVolumeLabelText, generalVolumeLabelCoord, 20, 5, WHITE);
+        GuiSliderBar(generalVolumeSlider, "", "", &generalVolume, 0.f, 1.f);
+    
+        DrawTextEx(font, musicVolumeLabelText, musicVolumeLabelCoord, 20, 5, WHITE);
+        GuiSliderBar(musicVolumeSlider, "", "", &musicVolume, 0.f, 1.f);
+    
+        DrawTextEx(font, fxVolumeLabelText, fxVolumeLabelCoord, 20, 5, WHITE);
+        GuiSliderBar(fxVolumeSlider, "", "", &fxVolume, 0.f, 1.f);
+    }
 }
 
 unsigned char PlayingMenu::onTouch()
@@ -46,10 +68,9 @@ unsigned char PlayingMenu::onTouch()
         reset();
         return EXIT_BUTTON;
     }
-    if (settingsButtonClicked)
+    if (saveButtonClicked)
     {
-        reset();
-        return SETTINGS_BUTTON;
+        return SAVE_SETTIGNS_BUTTON;
     }
     if (cancelButtonClicked)
     {
@@ -64,4 +85,5 @@ void PlayingMenu::reset()
     settingsButtonClicked = false;
     cancelButtonClicked = false;
     exitButtonClicked = false;
+    saveButtonClicked = false;
 }
