@@ -78,24 +78,32 @@ void loadingScreen(Font font)
 	Vector2 sizeB = MeasureTextEx(font, "Estudio CEIVE", 35, 5);
 	Vector2 sizeC = MeasureTextEx(font, "by Rebun", 20, 5);
 
-	float animationDuration = 3.5f;
+	Shader shader = LoadShader(0, TextFormat("shaders/glsl%i/bloom.fs", GLSL_VERSION));
+
+	float animationDuration = 3.0f;
+	std::vector<float> animation = {1.5f, 1.6f, 1.7f, 2.8f, 100.0f};
+	int animationCounter = 0;
+	bool shaderActive = false;
 	for (float elapsedTime = 0.f; elapsedTime < animationDuration; elapsedTime += GetFrameTime())
 	{
-		if (elapsedTime >= 1 && elapsedTime <= 2)
+		if (elapsedTime > animation[animationCounter])
 		{
-			opacity = std::round(255.0f * (elapsedTime - 1));
+			shaderActive = !shaderActive;
+			animationCounter++;
 		}
-		else if (elapsedTime >= animationDuration - 1.f)
-		{
-			opacity = std::round(255.0f * (animationDuration - (elapsedTime > animationDuration ? animationDuration : elapsedTime)));
-		}
-
-		Color color = {255, 255, 255, opacity};
 		BeginDrawing();
+		if (shaderActive)
+		{
+			BeginShaderMode(shader);
+		}
 		ClearBackground(GetColor(GuiGetStyle(DEFAULT, BACKGROUND_COLOR)));
-		DrawTextEx(font, "PARCHIS", {(480 - sizeA.x) / 2, 220}, 90, 5, {255, 255, 255, 255});
-		DrawTextEx(font, "Estudio CEIVE", {(480 - sizeB.x) / 2, 600}, 35, 5, color);
-		DrawTextEx(font, "by Rebun", {(480 - sizeC.x) / 2, 645}, 20, 5, color);
+		DrawTextEx(font, "PARCHIS", {(480 - sizeA.x) / 2, 220}, 90, 5, WHITE);
+		DrawTextEx(font, "Estudio CEIVE", {(480 - sizeB.x) / 2, 600}, 35, 5, WHITE);
+		DrawTextEx(font, "by Rebun", {(480 - sizeC.x) / 2, 645}, 20, 5, WHITE);
+		if (shaderActive)
+		{
+			EndShaderMode();
+		}
 		EndDrawing();
 	}
 	animationDuration = 1.f;
@@ -107,10 +115,12 @@ void loadingScreen(Font font)
 		EndDrawing();
 	}
 	animationDuration = 0.15f;
-	for (float elapsedTime = 0.f; elapsedTime < animationDuration; elapsedTime += GetFrameTime()) {
+	for (float elapsedTime = 0.f; elapsedTime < animationDuration; elapsedTime += GetFrameTime())
+	{
 		BeginDrawing();
 		ClearBackground(elapsedTime > .05f && elapsedTime < .1f ? bgColor : WHITE);
 		DrawTextEx(font, "PARCHIS", {(480 - sizeA.x) / 2, 100}, 90, 5, {255, 255, 255, 255});
 		EndDrawing();
 	}
+	UnloadShader(shader);
 }
