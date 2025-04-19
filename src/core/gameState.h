@@ -2,7 +2,7 @@
 #include "raylib.h"
 
 class Game;
-class Menu;
+class Hud;
 
 class GameState
 {
@@ -24,7 +24,7 @@ public:
     void draw() override;
 
 private:
-    Menu *menu;
+    Hud *hud;
 };
 
 class PlayingState : public GameState
@@ -41,7 +41,7 @@ public:
 private:
     class Board *board;
     double tick_dt;
-    Menu *menu;
+    Hud *hud;
     class Client *gameClient;
 };
 
@@ -56,5 +56,5 @@ public:
     void draw() override;
 
 private:
-    Menu *menu;
+    Hud *hud;
 };

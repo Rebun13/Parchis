@@ -1,7 +1,7 @@
-#include "settingsMenu.h"
+#include "settingsHud.h"
 #include "core/settings.h"
 
-SettingsMenu::SettingsMenu()
+SettingsHud::SettingsHud()
 {
     font = LoadFont("fonts/VT323.ttf");
     generalVolume = (float)Settings::getSetting(GENERAL_VOLUME) / 100.f;
@@ -9,12 +9,12 @@ SettingsMenu::SettingsMenu()
     fxVolume = (float)Settings::getSetting(FX_VOLUME) / 100.f;
 }
 
-SettingsMenu::~SettingsMenu()
+SettingsHud::~SettingsHud()
 {
     UnloadFont(font);
 }
 
-void SettingsMenu::draw()
+void SettingsHud::draw()
 {
     if(GuiButton(exitButton, BackButtonText)) {
         exitButtonClicked = true;
@@ -36,7 +36,7 @@ void SettingsMenu::draw()
     }
 }
 
-unsigned char SettingsMenu::onTouch()
+unsigned char SettingsHud::onTouch()
 {
     if (saveButtonClicked /*|| CheckCollisionPointRec(coord, saveButton)*/)
     {
@@ -53,7 +53,7 @@ unsigned char SettingsMenu::onTouch()
     return -1;
 }
 
-void SettingsMenu::reset(){
+void SettingsHud::reset(){
     saveButtonClicked = false;
     exitButtonClicked = false;
 }

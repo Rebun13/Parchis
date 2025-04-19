@@ -1,21 +1,21 @@
 #include "gameState.h"
 #include "raylib.h"
 #include "./game.h"
-#include "menus/mainMenu.h"
-#include "menus/settingsMenu.h"
-#include "menus/playingMenu.h"
+#include "hud/menuHud.h"
+#include "hud/settingsHud.h"
+#include "hud/playingHud.h"
 #include "gameObjects/board.h"
 #include "../config.h"
 // #include "client.h"
 
 MenuState::~MenuState()
 {
-    delete menu;
+    delete hud;
 }
 
 void MenuState::init()
 {
-    menu = new MainMenu();
+    hud = new MenuHud();
 }
 
 void MenuState::handleInput(Vector2 coord, Game &game)
@@ -24,20 +24,20 @@ void MenuState::handleInput(Vector2 coord, Game &game)
 
 void MenuState::update(Game &game)
 {
-    unsigned char pressedButton = menu->onTouch();
+    unsigned char pressedButton = hud->onTouch();
     switch (pressedButton)
     {
-    case MainMenu::PLAY_BUTTON:
+    case MenuHud::PLAY_BUTTON:
         game.state_ = &Game::playing;
         game.state_->init();
         game.prevState = this;
         break;
-    case MainMenu::SETTINGS_BUTTON:
+    case MenuHud::SETTINGS_BUTTON:
         game.state_ = &Game::settings;
         game.state_->init();
         game.prevState = this;
         break;
-    case MainMenu::EXIT_BUTTON:
+    case MenuHud::EXIT_BUTTON:
         game.setClose_();
         break;
     default:
@@ -48,25 +48,25 @@ void MenuState::update(Game &game)
 
 void MenuState::draw()
 {
-    if (!menu)
+    if (!hud)
     {
         init();
     }
-    menu->draw();
+    hud->draw();
 }
 
 /* PLAYING */
 void PlayingState::init()
 {
     board = new Board();
-    menu = new PlayingMenu;
+    hud = new PlayingHud;
     tick_dt = 1.0 / TARGET_FPS;
     board->init();
 }
 
 PlayingState::~PlayingState()
 {
-    delete menu;
+    delete hud;
 }
 
 void PlayingState::handleInput(Vector2 coord, Game &game)
@@ -76,13 +76,13 @@ void PlayingState::handleInput(Vector2 coord, Game &game)
 
 void PlayingState::update(Game &game)
 {
-    unsigned char pressedButton = menu->onTouch();
+    unsigned char pressedButton = hud->onTouch();
     switch (pressedButton)
     {
-    case PlayingMenu::SAVE_SETTIGNS_BUTTON:
+    case PlayingHud::SAVE_SETTIGNS_BUTTON:
         // TODO: get volume variables (make them public) and save them to settings file
         break;
-    case PlayingMenu::EXIT_BUTTON:
+    case PlayingHud::EXIT_BUTTON:
         // gameClient->handleDisconnection();
         game.state_ = &Game::menu;
         game.state_->init();
@@ -138,19 +138,19 @@ void PlayingState::handleNetwork()
 void PlayingState::draw()
 {
     board->draw();
-    menu->draw();
+    hud->draw();
 }
 
 /* SETTINGS */
 
 void SettingsState::init()
 {
-    menu = new SettingsMenu();
+    hud = new SettingsHud();
 }
 
 SettingsState::~SettingsState()
 {
-    delete menu;
+    delete hud;
 }
 
 void SettingsState::handleInput(Vector2 coord, Game &game)
@@ -159,13 +159,13 @@ void SettingsState::handleInput(Vector2 coord, Game &game)
 
 void SettingsState::update(Game &game)
 {
-    unsigned char pressedButton = menu->onTouch();
+    unsigned char pressedButton = hud->onTouch();
     switch (pressedButton)
     {
-    case SettingsMenu::SAVE_BUTTON:
+    case SettingsHud::SAVE_BUTTON:
         game.saveSettings(); // Not implemented yet
         break;
-    case SettingsMenu::EXIT_BUTTON:
+    case SettingsHud::EXIT_BUTTON:
         game.state_ = game.prevState;
         game.state_->init();
         game.prevState = this;
@@ -178,9 +178,9 @@ void SettingsState::update(Game &game)
 
 void SettingsState::draw()
 {
-    if (!menu)
+    if (!hud)
     {
         init();
     }
-    menu->draw();
+    hud->draw();
 }

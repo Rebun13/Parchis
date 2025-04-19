@@ -1,17 +1,17 @@
-#include "mainMenu.h"
+#include "menuHud.h"
 
-MainMenu::~MainMenu()
+MenuHud::~MenuHud()
 {
     UnloadFont(font);
 }
 
-MainMenu::MainMenu()
+MenuHud::MenuHud()
 {
     font = LoadFont("fonts/JetSet-8j1J.ttf");
     titleSize = MeasureTextEx(font, title, 90, 5);
 }
 
-void MainMenu::draw()
+void MenuHud::draw()
 {
     DrawTextEx(font, title, {(480 - titleSize.x) / 2, 100}, 90, 5, {255, 255, 255, 255});
 
@@ -29,7 +29,7 @@ void MainMenu::draw()
     }
 }
 
-unsigned char MainMenu::onTouch()
+unsigned char MenuHud::onTouch()
 {
     if (playButtonClicked)
     {
@@ -52,7 +52,7 @@ unsigned char MainMenu::onTouch()
     return -1;
 }
 
-void MainMenu::reset()
+void MenuHud::reset()
 {
     playButtonClicked = false;
     settingsButtonClicked = false;

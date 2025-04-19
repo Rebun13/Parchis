@@ -1,17 +1,17 @@
 #pragma once
 
-#include "menu.h"
+#include "hud.h"
 #include "raylib.h"
 
-class MainMenu : public Menu
+class MenuHud : public Hud
 {
 public:
     static const unsigned char PLAY_BUTTON = 0;
     static const unsigned char SETTINGS_BUTTON = 1;
     static const unsigned char EXIT_BUTTON = 2;
 
-    MainMenu();
-    ~MainMenu();
+    MenuHud();
+    ~MenuHud();
     void draw() override;
     unsigned char onTouch() override;
     void reset() override;

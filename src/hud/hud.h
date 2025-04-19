@@ -7,7 +7,7 @@
 #include "ricons.h"
 #include "raygui.h"
 
-class Menu
+class Hud
 {
 public:
   virtual void draw() = 0;

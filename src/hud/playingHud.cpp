@@ -1,4 +1,4 @@
-#include "playingMenu.h"
+#include "playingHud.h"
 
 #if defined(PLATFORM_DESKTOP)
     #define GLSL_VERSION            330
@@ -6,19 +6,19 @@
     #define GLSL_VERSION            100
 #endif
 
-PlayingMenu::PlayingMenu()
+PlayingHud::PlayingHud()
 {
     font = LoadFont("fonts/JetSet-8j1J.ttf");
     exitWindowTextSize = MeasureTextEx(font, exitWindowText, 16, 1);
     exitWindowTextPosition.x = (480.f - exitWindowTextSize.x) / 2.f;
 }
 
-PlayingMenu::~PlayingMenu()
+PlayingHud::~PlayingHud()
 {
     UnloadFont(font);
 }
 
-void PlayingMenu::draw()
+void PlayingHud::draw()
 {
     if (GuiButton(buttonExit, exitButtonText))
     {
@@ -61,7 +61,7 @@ void PlayingMenu::draw()
     }
 }
 
-unsigned char PlayingMenu::onTouch()
+unsigned char PlayingHud::onTouch()
 {
     if (surrenderButtonClicked)
     {
@@ -79,7 +79,7 @@ unsigned char PlayingMenu::onTouch()
     return -1;
 }
 
-void PlayingMenu::reset()
+void PlayingHud::reset()
 {
     surrenderButtonClicked = false;
     settingsButtonClicked = false;
