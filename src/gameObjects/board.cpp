@@ -1,8 +1,22 @@
 #include "board.h"
 #include "box.h"
 
-Board::Board()
+Board::Board(int numPlayers)
 {
+    switch (numPlayers)
+    {
+    case 2:
+        /* code */
+        break;
+    case 3:
+        /* code */
+        break;
+    case 4:
+        /* code */
+        break;
+    default:
+        break;
+    }
     texture = LoadTexture("textures/board_hr.png");
     buildBoxes();
 }
@@ -13,10 +27,6 @@ Board::~Board()
     clearBoxes();
 }
 
-void Board::init()
-{
-    // TODO: get players and set first
-}
 
 void Board::draw()
 {

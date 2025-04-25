@@ -13,13 +13,11 @@ class Box;
 class Board
 {
 public:
-    Board();
+    Board(int numPlayers);
     ~Board();
-    void init();
     void draw();
-    void handleInput(Vector2 coord, Game &game) {}
+    void handleInput(Vector2 coord, Game &game);
     void update(Game &game) {}
-    void onTouch(Vector2 coord);
 
 private:
     std::vector<std::unique_ptr<Box>> boxes;

@@ -1,7 +1,9 @@
 #pragma once
 
-#include "./gameState.h"
-
+#include "core/gameState/gameState.h"
+#include "core/gameState/menuState.h"
+#include "core/gameState/playingState.h"
+#include "core/gameState/settingsState.h"
 
 class Game
 {
@@ -11,6 +13,8 @@ public:
   inline static PlayingState playing;
 
   Game();
+  ~Game();
+
   void handleInput(Vector2 coord);
   void draw();
   void update();
@@ -20,8 +24,16 @@ public:
   void saveSettings() {} // TODO: add arguments and save using settings::saveSettings()
   GameState *state_;
   GameState *prevState = nullptr;
-
+  
 private:
+  static Game instance_;
   // vector<Player> players;
   bool close = false;
+  Font font_;
+  bool initialized = false;
+
+public:
+  static Game& instance();
+  Font getFont() { return font_; }
+  bool isInitialized() { return initialized; }
 };

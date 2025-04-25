@@ -5,15 +5,14 @@
 #include <iostream>
 #include <cmath>
 #include "raylib.h"
-#include "./core/colors.h"
-#include "./core/game.h"
+#include "core/game.h"
 #include "style/styleLoader.h"
 #include "config.h"
 // #include "network.h"
 
 #include "resource_dir.h" // utility header for SearchAndSetResourceDir
 
-void loadingScreen(Font font);
+void loadingScreen();
 
 int main()
 {
@@ -31,11 +30,11 @@ int main()
 	// Utility function from resource_dir.h to find the resources folder and set it as the current working directory so we can load from it
 	SearchAndSetResourceDir("resources");
 	GuiLoadStyleDark();
-	Font font = LoadFont("fonts/JetSet-8j1J.ttf");
-
-	loadingScreen(font);
 
 	Game game = Game();
+
+	loadingScreen();
+
 	game.state_ = &Game::menu;
 	game.state_->init();
 
@@ -64,16 +63,15 @@ int main()
 	};
 
 	// cleanup
-	UnloadFont(font);
 	// destroy the window and cleanup the OpenGL context
 	CloseWindow();
 	return 0;
 }
 
-void loadingScreen(Font font)
+void loadingScreen()
 {
 	unsigned char opacity = 0;
-
+	Font font = Game::instance().getFont();
 	Vector2 sizeA = MeasureTextEx(font, "PARCHIS", 90, 5);
 	Vector2 sizeB = MeasureTextEx(font, "Estudio CEIVE", 35, 5);
 	Vector2 sizeC = MeasureTextEx(font, "by Rebun", 20, 5);
@@ -118,7 +116,7 @@ void loadingScreen(Font font)
 	for (float elapsedTime = 0.f; elapsedTime < animationDuration; elapsedTime += GetFrameTime())
 	{
 		BeginDrawing();
-		ClearBackground(elapsedTime > .05f && elapsedTime < .1f ? bgColor : WHITE);
+		ClearBackground(elapsedTime > .05f && elapsedTime < .1f ? GetColor(GuiGetStyle(DEFAULT, BACKGROUND_COLOR)) : WHITE);
 		DrawTextEx(font, "PARCHIS", {(480 - sizeA.x) / 2, 100}, 90, 5, {255, 255, 255, 255});
 		EndDrawing();
 	}
