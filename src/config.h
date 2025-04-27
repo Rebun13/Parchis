@@ -11,3 +11,5 @@
 #else   // PLATFORM_ANDROID, PLATFORM_WEB
     #define GLSL_VERSION            100
 #endif
+
+#define TURN_MAX_DURATION 30

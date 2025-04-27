@@ -1,17 +1,22 @@
 #include "game.h"
 #include "raylib.h"
+#include <cassert>
 
-Game Game::instance_;
+Game *Game::instance_;
+bool instantiated_ = false;
 
 Game::Game()
 {
+    assert(!instantiated_);
     font_ = LoadFont("resources/fonts/JetSet-8j1J.ttf");
-    initialized = true;
+    instantiated_ = true;
+    Game::instance_ = this;
 }
 
 Game::~Game()
 {
     UnloadFont(font_);
+    instantiated_ = false;
 }
 
 void Game::draw()
@@ -37,4 +42,18 @@ bool Game::gameShouldClose()
 void Game::setClose_()
 {
     close = true;
+}
+
+Game &Game::instance()
+{
+    if (!instantiated_)
+    {
+        instance_ = new Game();
+    }
+    return *instance_;
+}
+
+Font Game::getFont()
+{
+    return font_;
 }

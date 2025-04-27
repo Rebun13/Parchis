@@ -26,14 +26,13 @@ public:
   GameState *prevState = nullptr;
   
 private:
-  static Game instance_;
+  static Game *instance_;
+  static bool instantiated_;
   // vector<Player> players;
   bool close = false;
   Font font_;
-  bool initialized = false;
 
 public:
   static Game& instance();
-  Font getFont() { return font_; }
-  bool isInitialized() { return initialized; }
+  Font getFont();
 };

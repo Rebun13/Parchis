@@ -4,6 +4,8 @@
 #include "core/game.h"
 #include <iostream>
 
+bool Game::instantiated_ = false;
+
 int drawButton(Rectangle size, const char *text, Color color, Color hoverColor, Color pressedColor)
 {
     Font font = Game::instance().getFont();
@@ -13,7 +15,6 @@ int drawButton(Rectangle size, const char *text, Color color, Color hoverColor, 
     {
         if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
         {
-            std::cout << "Font " << (Game::instance().isInitialized() ? "loaded" : "not loaded") << std::endl;
             DrawRectangleRounded(size, 0.1, 6, pressedColor);
             val = 1;
         }
