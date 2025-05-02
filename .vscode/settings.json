@@ -98,6 +98,10 @@
 		"codecvt": "c",
 		"forward_list": "c",
 		"ranges": "c",
-		"valarray": "c"
+		"valarray": "c",
+		"filesystem": "cpp",
+		"list": "cpp",
+		"stack": "cpp",
+		"xhash": "cpp"
 	}
 }

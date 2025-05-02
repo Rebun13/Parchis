@@ -2,21 +2,14 @@
 #include "raylib.h"
 #include <cassert>
 
-Game *Game::instance_;
-bool instantiated_ = false;
-
 Game::Game()
 {
-    assert(!instantiated_);
     font_ = LoadFont("resources/fonts/JetSet-8j1J.ttf");
-    instantiated_ = true;
-    Game::instance_ = this;
 }
 
 Game::~Game()
 {
     UnloadFont(font_);
-    instantiated_ = false;
 }
 
 void Game::draw()
@@ -24,7 +17,7 @@ void Game::draw()
     state_->draw();
 }
 
-void Game::handleInput(Vector2 coord)
+void Game::handleInput()
 {
     // state_->handleInput(coord, *this);
 }
@@ -32,6 +25,10 @@ void Game::handleInput(Vector2 coord)
 void Game::update()
 {
     state_->update(*this);
+}
+
+void Game::beginGame()
+{
 }
 
 bool Game::gameShouldClose()
@@ -44,16 +41,15 @@ void Game::setClose_()
     close = true;
 }
 
-Game &Game::instance()
+void Game::saveSettings()
 {
-    if (!instantiated_)
-    {
-        instance_ = new Game();
-    }
-    return *instance_;
 }
 
 Font Game::getFont()
 {
     return font_;
 }
+
+std::unique_ptr<GameInterface> GameInterface::createGameInstance() {
+    return std::make_unique<Game>();
+};

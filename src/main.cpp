@@ -5,7 +5,7 @@
 #include <iostream>
 #include <cmath>
 #include "raylib.h"
-#include "core/game.h"
+#include "core/gameInterface.h"
 #include "style/styleLoader.h"
 #include "config.h"
 // #include "network.h"
@@ -31,7 +31,7 @@ int main()
 	SearchAndSetResourceDir("resources");
 	GuiLoadStyleDark();
 
-	Game game = Game();
+	std::unique_ptr<GameInterface> game = GameInterface::createGameInstance();
 
 	loadingScreen();
 
@@ -41,13 +41,7 @@ int main()
 	// game loop
 	while (!(WindowShouldClose() || game.gameShouldClose())) // run the loop untill the user presses ESCAPE or presses the Close button on the window
 	{
-		// Handle input
-		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-		{
-			// Vector2 touchPoint = GetTouchPosition(0);
-			Vector2 touchPoint = GetMousePosition();
-			game.handleInput(touchPoint);
-		}
+		game.handleInput();
 
 		// Update
 		game.update();

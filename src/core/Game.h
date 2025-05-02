@@ -4,8 +4,9 @@
 #include "core/gameState/menuState.h"
 #include "core/gameState/playingState.h"
 #include "core/gameState/settingsState.h"
+#include "core/gameInterface.h"
 
-class Game
+class Game : public GameInterface
 {
 public:
   inline static MenuState menu;
@@ -14,25 +15,22 @@ public:
 
   Game();
   ~Game();
-
-  void handleInput(Vector2 coord);
-  void draw();
-  void update();
-  void beginGame() {};
-  bool gameShouldClose();
-  void setClose_();
-  void saveSettings() {} // TODO: add arguments and save using settings::saveSettings()
+  /* INTERFACE */
+  virtual void handleInput() final;
+  virtual void draw() final;
+  virtual void update() final;
+  virtual void beginGame() final;
+  virtual bool gameShouldClose() final;
+  virtual void setClose_() final;
+  virtual void saveSettings() final; // TODO: add arguments and save using settings::saveSettings()
+  /* END INTERFACE */
   GameState *state_;
   GameState *prevState = nullptr;
   
 private:
-  static Game *instance_;
-  static bool instantiated_;
-  // vector<Player> players;
   bool close = false;
   Font font_;
 
 public:
-  static Game& instance();
   Font getFont();
 };
