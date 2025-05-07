@@ -2,7 +2,6 @@
 #define COLORS_H
 
 #include "raylib.h"
-#include <vector>
 
 const Color bgColor = {37, 53, 92, 255};
 const Color bgColorAlt = {33, 89, 219, 255};
@@ -15,6 +14,8 @@ const Color secondaryColor = {160, 94, 66, 255};
 const Color secondaryColorHover = {163, 78, 41, 255};
 const Color secondaryColorPress = {160, 94, 66, 255};
 
+const Color fontColor = {0, 0,0,255};
+
 enum ColorIndex
 {
     BG_COLOR,
@@ -24,10 +25,11 @@ enum ColorIndex
     PRIMARY_COLOR_PRESS,
     SECONDARY_COLOR,
     SECONDARY_COLOR_HOVER,
-    SECONDARY_COLOR_PRESS
+    SECONDARY_COLOR_PRESS,
+    FONT_COLOR
 };
 
-Color GetThemeColor(ColorIndex index)
+inline Color GetThemeColor(ColorIndex index)
 {
     switch (index)
     {
@@ -47,6 +49,8 @@ Color GetThemeColor(ColorIndex index)
         return secondaryColorHover;
     case SECONDARY_COLOR_PRESS:
         return secondaryColorPress;
+    case FONT_COLOR:
+    return fontColor;
     default:
         return {0, 0, 0, 255}; // Default to black if index is invalid
     }

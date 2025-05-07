@@ -9,10 +9,10 @@ public:
     RegularGameMode();
     ~RegularGameMode();
 
-    void init() override;
-    void update(class Game &game) override;
-    void draw() override;
-    void handleInput(Vector2 coord, Game &game) override;
+    void init() final;
+    void update() final;
+    void draw() final;
+    void handleInput() final;
 
 private:
     Rectangle buttonTwoPlayerRect = {48, 240, 96, 72};

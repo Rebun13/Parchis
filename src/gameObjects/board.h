@@ -16,8 +16,8 @@ public:
     Board(int numPlayers);
     ~Board();
     void draw();
-    void handleInput(Vector2 coord, Game &game);
-    void update(Game &game) {}
+    void handleInput();
+    void update() {}
 
 private:
     std::vector<std::unique_ptr<Box>> boxes;

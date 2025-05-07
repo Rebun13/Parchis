@@ -1,12 +1,11 @@
-#include "config.h"
+// #include "config.h"
 
 #include "playingState.h"
 #include "core/game.h"
 #include "core/gameMode/gameMode.h"
-#include "core/gameMode/regularGameMode.h"
+#include "core/gameMode/regularGamemode.h"
 #include "hud/playingHud.h"
 #include "gameObjects/board.h"
-#include "gameObjects/player.h"
 
 void PlayingState::init()
 {
@@ -16,8 +15,6 @@ void PlayingState::init()
 
 PlayingState::PlayingState()
 {
-    players = std::vector<std::unique_ptr<Player>>();
-
 }
 
 PlayingState::~PlayingState()
@@ -25,13 +22,14 @@ PlayingState::~PlayingState()
     delete hud;
 }
 
-void PlayingState::handleInput(Vector2 coord, Game &game)
+void PlayingState::handleInput()
 {
     // board->handleInput(coord, game);
 }
 
-void PlayingState::update(Game &game)
+void PlayingState::update()
 {
+    std::unique_ptr<GameInterface> game = Game::getGameInstance();
     unsigned char pressedButton;
     if (gamemode->gameStarted)
     {
@@ -48,11 +46,9 @@ void PlayingState::update(Game &game)
         break;
     case PlayingHud::EXIT_BUTTON:
         // gameClient->handleDisconnection();
-        game.state_ = &Game::menu;
-        game.state_->init();
-        game.prevState = this;
+        game->setState(Game::menu);
     default:
-        gamemode->update(game);
+        gamemode->update();
         break;
     }
 }

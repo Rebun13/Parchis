@@ -38,7 +38,7 @@ private:
     bool exitButtonClicked = false;
     // Labels
     const char *volumeContainerText = "VOLUME";
-    const char *BackButtonText = GuiIconText(ICON_BACK, "");
+    const char *BackButtonText = "BACK";
     const char *saveButtonText = "SAVE";
     const char *musicVolumeLabelText = "Music Volume";
     const char *fxVolumeLabelText = "FX Volume";

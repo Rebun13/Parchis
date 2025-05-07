@@ -15,6 +15,11 @@
                     "config=debug_arm64"
                 ],
             },
+            "linux": {
+                "args": [
+                    "GLFW_LINUX_ENABLE_WAYLAND=TRUE"
+                ]
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -36,7 +41,8 @@
             },
             "linux": {
                 "args": [
-                    "config=release_x64"
+                    "config=release_x64",
+                    "GLFW_LINUX_ENABLE_WAYLAND=TRUE"
                 ],
             },
             "osx": {

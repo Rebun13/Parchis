@@ -7,11 +7,11 @@ class MenuState : public GameState
 public:
     MenuState() {}
     ~MenuState();
-    void init();
-    void handleInput(Vector2 coord, Game &game) override;
-    void update(Game &game) override;
-    void draw() override;
+    virtual void init() final;
+    virtual void handleInput() final;
+    virtual void update() final;
+    virtual void draw() final;
 
 private:
-    Hud *hud;
+    class Hud *hud;
 };

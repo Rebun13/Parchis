@@ -1,59 +1,59 @@
 #include "settingsHud.h"
 #include "core/settings.h"
+#include "hud/buttons.h"
+#include "style/colors.h"
 
-SettingsHud::SettingsHud()
-{
-    font = LoadFont("fonts/VT323.ttf");
-    generalVolume = (float)Settings::getSetting(GENERAL_VOLUME) / 100.f;
-    musicVolume = (float)Settings::getSetting(MUSIC_VOLUME) / 100.f;
-    fxVolume = (float)Settings::getSetting(FX_VOLUME) / 100.f;
+SettingsHud::SettingsHud() {
+  font = LoadFont("fonts/VT323.ttf");
+  generalVolume = (float)Settings::getSetting(GENERAL_VOLUME) / 100.f;
+  musicVolume = (float)Settings::getSetting(MUSIC_VOLUME) / 100.f;
+  fxVolume = (float)Settings::getSetting(FX_VOLUME) / 100.f;
 }
 
-SettingsHud::~SettingsHud()
-{
-    UnloadFont(font);
+SettingsHud::~SettingsHud() { UnloadFont(font); }
+
+void SettingsHud::draw() {
+  if (drawButton(exitButton, BackButtonText, GetThemeColor(PRIMARY_COLOR),
+                 GetThemeColor(PRIMARY_COLOR_HOVER),
+                 GetThemeColor((PRIMARY_COLOR_PRESS)))) {
+    exitButtonClicked = true;
+  }
+
+  drawSlider(generalVolumeSlider, generalVolumeLabelText, generalVolume,
+             GetThemeColor(PRIMARY_COLOR), GetThemeColor(PRIMARY_COLOR_HOVER),
+             GetThemeColor((PRIMARY_COLOR_PRESS)));
+
+  drawSlider(musicVolumeSlider, musicVolumeLabelText, musicVolume,
+             GetThemeColor(PRIMARY_COLOR), GetThemeColor(PRIMARY_COLOR_HOVER),
+             GetThemeColor((PRIMARY_COLOR_PRESS)));
+
+  DrawTextEx(font, fxVolumeLabelText, fxVolumeLabelCoord, 20, 5, WHITE);
+  drawSlider(fxVolumeSlider, fxVolumeLabelText, fxVolume,
+             GetThemeColor(PRIMARY_COLOR), GetThemeColor(PRIMARY_COLOR_HOVER),
+             GetThemeColor((PRIMARY_COLOR_PRESS)));
+
+  if (drawButton(saveButton, saveButtonText, GetThemeColor(PRIMARY_COLOR),
+                 GetThemeColor(PRIMARY_COLOR_HOVER),
+                 GetThemeColor((PRIMARY_COLOR_PRESS)))) {
+    saveButtonClicked = true;
+  }
 }
 
-void SettingsHud::draw()
-{
-    if(GuiButton(exitButton, BackButtonText)) {
-        exitButtonClicked = true;
-    }
-
-    GuiGroupBox(volumeContainer, volumeContainerText);
-
-    DrawTextEx(font, generalVolumeLabelText, generalVolumeLabelCoord, 20, 5, WHITE);
-    GuiSliderBar(generalVolumeSlider, "", "", &generalVolume, 0.f, 1.f);
-
-    DrawTextEx(font, musicVolumeLabelText, musicVolumeLabelCoord, 20, 5, WHITE);
-    GuiSliderBar(musicVolumeSlider, "", "", &musicVolume, 0.f, 1.f);
-
-    DrawTextEx(font, fxVolumeLabelText, fxVolumeLabelCoord, 20, 5, WHITE);
-    GuiSliderBar(fxVolumeSlider, "", "", &fxVolume, 0.f, 1.f);
-
-    if (GuiButton(saveButton, saveButtonText)) {
-        saveButtonClicked = true;
-    }
+unsigned char SettingsHud::onTouch() {
+  if (saveButtonClicked /*|| CheckCollisionPointRec(coord, saveButton)*/) {
+    // TODO: play sound
+    reset();
+    return SAVE_BUTTON;
+  } else if (
+      exitButtonClicked /* || CheckCollisionPointRec(coord, exitButton)*/) {
+    // TODO: play sound
+    reset();
+    return EXIT_BUTTON;
+  }
+  return -1;
 }
 
-unsigned char SettingsHud::onTouch()
-{
-    if (saveButtonClicked /*|| CheckCollisionPointRec(coord, saveButton)*/)
-    {
-        // TODO: play sound
-        reset();
-        return SAVE_BUTTON;
-    }
-    else if (exitButtonClicked /* || CheckCollisionPointRec(coord, exitButton)*/)
-    {
-        // TODO: play sound
-        reset();
-        return EXIT_BUTTON;
-    }
-    return -1;
-}
-
-void SettingsHud::reset(){
-    saveButtonClicked = false;
-    exitButtonClicked = false;
+void SettingsHud::reset() {
+  saveButtonClicked = false;
+  exitButtonClicked = false;
 }

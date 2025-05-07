@@ -7,16 +7,13 @@ class PlayingState : public GameState
 public:
     PlayingState();
     ~PlayingState();
-    void init() override;
-    void handleInput(Vector2 coord, Game &game) override;
+    void init() final;
+    void handleInput() final;
     // void handleNetwork();
-    void update(Game &game) override;
-    void draw() override;
+    void update() final;
+    void draw() final;
 
 private:
     class Hud *hud;
     class GameMode *gamemode;
-    std::vector<std::unique_ptr<class Player>> players;
-    // double tick_dt;
-    // class Client *gameClient;
 };

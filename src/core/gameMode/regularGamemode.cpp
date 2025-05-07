@@ -1,7 +1,6 @@
 #include "regularGamemode.h"
 #include "core/game.h"
 #include "gameObjects/board.h"
-#include "gameObjects/player.h"
 #include "raylib.h"
 #include "hud/buttons.h"
 #include "style/colors.h"
@@ -23,9 +22,9 @@ void RegularGameMode::init()
     gameStarted = true;
 }
 
-void RegularGameMode::update(Game &game)
+void RegularGameMode::update()
 {
-    board->update(game);
+    board->update();
 }
 
 void RegularGameMode::draw()
@@ -78,15 +77,16 @@ void RegularGameMode::draw()
     }
     else
     {
-        // TODO: draw board, tokens and hud
+        // TODO: draw board, tokens and hud.setState(
     }
 }
 
-void RegularGameMode::handleInput(Vector2 coord, Game &game)
+void RegularGameMode::handleInput()
 {
+    std::unique_ptr<GameInterface> game = Game::getGameInstance();
     if(!gameStarted && exitButtonClicked) {
-        game.state_ = &Game::menu;
+        game->setState(Game::menu);
         delete this;
     }
-    board->update(game);
+    board->update();
 }

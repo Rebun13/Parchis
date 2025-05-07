@@ -1,6 +1,8 @@
 #include "menuState.h"
+#include "hud/hud.h"
 #include "hud/menuHud.h"
 #include "core/game.h"
+#include <memory>
 
 MenuState::~MenuState()
 {
@@ -12,27 +14,24 @@ void MenuState::init()
     hud = new MenuHud();
 }
 
-void MenuState::handleInput(Vector2 coord, Game &game)
+void MenuState::handleInput()
 {
 }
 
-void MenuState::update(Game &game)
+void MenuState::update()
 {
+    std::unique_ptr<GameInterface> game = Game::getGameInstance();
     unsigned char pressedButton = hud->onTouch();
     switch (pressedButton)
     {
     case MenuHud::PLAY_BUTTON:
-        game.state_ = &Game::playing;
-        game.state_->init();
-        game.prevState = this;
+        game->setState(Game::playing);
         break;
     case MenuHud::SETTINGS_BUTTON:
-        game.state_ = &Game::settings;
-        game.state_->init();
-        game.prevState = this;
+        game->setState(Game::settings);
         break;
     case MenuHud::EXIT_BUTTON:
-        game.setClose_();
+        game->setClose_();
         break;
     default:
         break;
