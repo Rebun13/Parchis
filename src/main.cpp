@@ -26,7 +26,7 @@ int main()
 	// Utility function from resource_dir.h to find the resources folder and set it as the current working directory so we can load from it
 	SearchAndSetResourceDir("resources");
 
-	std::unique_ptr<GameInterface> game = GameInterface::getGameInstance();
+	std::shared_ptr<GameInterface> game = GameInterface::getGameInstance();
 
 	loadingScreen();
 

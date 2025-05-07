@@ -83,7 +83,7 @@ void RegularGameMode::draw()
 
 void RegularGameMode::handleInput()
 {
-    std::unique_ptr<GameInterface> game = Game::getGameInstance();
+    std::shared_ptr<GameInterface> game = Game::getGameInstance();
     if(!gameStarted && exitButtonClicked) {
         game->setState(Game::menu);
         delete this;

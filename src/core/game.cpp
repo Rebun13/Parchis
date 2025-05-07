@@ -3,7 +3,7 @@
 #include <cassert>
 #include <iostream>
 
-Game* Game::instance = nullptr;
+std::shared_ptr<Game> Game::instance = nullptr;
 
 Game::Game() {
   std::string workingDir(GetWorkingDirectory());
@@ -41,6 +41,6 @@ void Game::setState(GameState &state) {
   state_->init();
 }
 
-std::unique_ptr<GameInterface> GameInterface::getGameInstance() {
+std::shared_ptr<GameInterface> GameInterface::getGameInstance() {
   return Game::gameInstance();
 };

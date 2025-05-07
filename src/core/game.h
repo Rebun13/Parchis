@@ -8,11 +8,11 @@ class Game : public GameInterface {
 public:
   Game();
   ~Game();
-  static std::unique_ptr<GameInterface> gameInstance() {
+  static std::shared_ptr<GameInterface> gameInstance() {
     if (!instance) {
-      instance = new Game();
+      instance = std::shared_ptr<Game>(new Game());
     }
-    return std::unique_ptr<Game>(instance);
+    return std::shared_ptr<Game>(instance);
   }
 
   /* INTERFACE */
@@ -35,5 +35,5 @@ private:
   GameState *state_;
   bool close = false;
   Font font_;
-  static Game *instance;
+  static std::shared_ptr<Game> instance;
 };

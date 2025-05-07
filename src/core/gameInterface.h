@@ -25,5 +25,5 @@ public:
   virtual void setState(GameState &state) = 0;
   virtual class Font getFont() = 0;
 
-  static std::unique_ptr<GameInterface> getGameInstance();
+  static std::shared_ptr<GameInterface> getGameInstance();
 };

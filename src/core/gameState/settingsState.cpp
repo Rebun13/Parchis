@@ -19,7 +19,7 @@ void SettingsState::handleInput()
 
 void SettingsState::update()
 {
-    std::unique_ptr<GameInterface> game = Game::getGameInstance();
+    std::shared_ptr<GameInterface> game = Game::getGameInstance();
     unsigned char pressedButton = hud->onTouch();
     switch (pressedButton)
     {
