@@ -13,7 +13,7 @@ SettingsHud::SettingsHud() {
 SettingsHud::~SettingsHud() { UnloadFont(font); }
 
 void SettingsHud::draw() {
-  if (drawButton(exitButton, BackButtonText, GetThemeColor(PRIMARY_COLOR),
+  if (drawButton(exitButton, BackButtonText, 20, GetThemeColor(PRIMARY_COLOR),
                  GetThemeColor(PRIMARY_COLOR_HOVER),
                  GetThemeColor((PRIMARY_COLOR_PRESS)))) {
     exitButtonClicked = true;
@@ -32,14 +32,14 @@ void SettingsHud::draw() {
              GetThemeColor(PRIMARY_COLOR), GetThemeColor(PRIMARY_COLOR_HOVER),
              GetThemeColor((PRIMARY_COLOR_PRESS)));
 
-  if (drawButton(saveButton, saveButtonText, GetThemeColor(PRIMARY_COLOR),
+  if (drawButton(saveButton, saveButtonText, 20, GetThemeColor(PRIMARY_COLOR),
                  GetThemeColor(PRIMARY_COLOR_HOVER),
                  GetThemeColor((PRIMARY_COLOR_PRESS)))) {
     saveButtonClicked = true;
   }
 }
 
-unsigned char SettingsHud::onTouch() {
+unsigned char SettingsHud::handleInput() {
   if (saveButtonClicked /*|| CheckCollisionPointRec(coord, saveButton)*/) {
     // TODO: play sound
     reset();

@@ -1,98 +1,42 @@
 // #include "config.h"
 
 #include "playingState.h"
-#include "core/game.h"
 #include "core/gameMode/gameMode.h"
 #include "core/gameMode/regularGamemode.h"
+#include "core/gameState/menuState.h"
 #include "hud/playingHud.h"
-#include "gameObjects/board.h"
-
-void PlayingState::init()
-{
-    hud = new PlayingHud;
-    gamemode = new RegularGameMode();
-}
+#include <memory>
 
 PlayingState::PlayingState()
 {
+    hud = std::make_unique<PlayingHud>();
+    gamemode = std::make_unique<RegularGameMode>();
 }
 
 PlayingState::~PlayingState()
 {
-    delete hud;
+    hud.reset();
+    gamemode.reset();
 }
 
-void PlayingState::handleInput()
+std::shared_ptr<GameState> PlayingState::handleInput()
 {
-    // board->handleInput(coord, game);
+    unsigned char pressedButton = hud->handleInput();
+    switch(pressedButton) {
+    case PlayingHud::SAVE_SETTINGS_BUTTON:
+        // TODO: get volume variables (make them public) and save them to settings file
+        return nullptr;
+    case PlayingHud::EXIT_BUTTON:
+        return std::make_shared<MenuState>();
+    default:
+        return gamemode->handleInput();
+    }
 }
 
 void PlayingState::update()
 {
-    std::shared_ptr<GameInterface> game = Game::getGameInstance();
-    unsigned char pressedButton;
-    if (gamemode->gameStarted)
-    {
-        pressedButton = hud->onTouch();
-    }
-    else
-    {
-        pressedButton = -1;
-    }
-    switch (pressedButton)
-    {
-    case PlayingHud::SAVE_SETTIGNS_BUTTON:
-        // TODO: get volume variables (make them public) and save them to settings file
-        break;
-    case PlayingHud::EXIT_BUTTON:
-        // gameClient->handleDisconnection();
-        game->setState(Game::menu);
-    default:
-        gamemode->update();
-        break;
-    }
+    
 }
-
-// void PlayingState::handleNetwork()
-// {
-    // double acc = GetFrameTime(); // Accumulates time
-
-    // // Simulates as many ticks as we can
-    // while (acc >= tick_dt)
-    // {
-    //     int ev;
-
-    //     while ((ev = NBN_GameClient_Poll()) != NBN_NO_EVENT)
-    //     {
-    //         if (ev < 0)
-    //         {
-    //             TraceLog(LOG_WARNING, "An occured while polling network events. Exit");
-
-    //             break;
-    //         }
-
-    //         gameClient->handleGameClientEvent(ev);
-    //     }
-
-    //     if (gameClient->connected && !gameClient->disconnected)
-    //     {
-    //         if (gameClient->update() < 0)
-    //         {
-    //             break;
-    //         }
-    //     }
-
-    //     if (!gameClient->disconnected)
-    //     {
-    //         if (NBN_GameClient_SendPackets() < 0)
-    //         {
-    //             TraceLog(LOG_ERROR, "An occured while flushing the send queue. Exit");
-    //             break;
-    //         }
-    //     }
-    //     acc -= tick_dt; // Consumes time
-    // }
-// }
 
 void PlayingState::draw()
 {

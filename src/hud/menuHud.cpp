@@ -1,11 +1,12 @@
 #include "menuHud.h"
 #include "hud/buttons.h"
 #include "style/colors.h"
+#include "core/game.h"
 
 MenuHud::~MenuHud() { UnloadFont(font); }
 
 MenuHud::MenuHud() {
-  font = LoadFont("fonts/JetSet-8j1J.ttf");
+  font = Game::getGameInstance()->getFont();
   titleSize = MeasureTextEx(font, title, 90, 5);
 }
 
@@ -14,26 +15,26 @@ void MenuHud::draw() {
              {255, 255, 255, 255});
 
   if (drawButton((480 - titleSize.x) / 2, buttonPlay_y, titleSize.x,
-                 buttonHeight, playButtonText, GetThemeColor(PRIMARY_COLOR),
+                 buttonHeight, playButtonText, 40, GetThemeColor(PRIMARY_COLOR),
                  GetThemeColor(PRIMARY_COLOR_HOVER),
                  GetThemeColor(PRIMARY_COLOR_PRESS))) {
     playButtonClicked = true;
   }
   if (drawButton((480 - titleSize.x) / 2, buttonSettings_y, titleSize.x,
-                 buttonHeight, settingsButtonText, GetThemeColor(PRIMARY_COLOR),
+                 buttonHeight, settingsButtonText, 40, GetThemeColor(PRIMARY_COLOR),
                  GetThemeColor(PRIMARY_COLOR_HOVER),
                  GetThemeColor(PRIMARY_COLOR_PRESS))) {
     settingsButtonClicked = true;
   }
   if (drawButton((480 - titleSize.x) / 2, buttonExit_y, titleSize.x,
-                 buttonHeight, exitButtonText, GetThemeColor(PRIMARY_COLOR),
+                 buttonHeight, exitButtonText, 40, GetThemeColor(PRIMARY_COLOR),
                  GetThemeColor(PRIMARY_COLOR_HOVER),
                  GetThemeColor(PRIMARY_COLOR_PRESS))) {
     exitButtonClicked = true;
   }
 }
 
-unsigned char MenuHud::onTouch() {
+unsigned char MenuHud::handleInput() {
   if (playButtonClicked) {
     // TODO: play sound
     reset();

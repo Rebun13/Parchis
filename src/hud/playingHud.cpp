@@ -18,13 +18,13 @@ PlayingHud::PlayingHud() {
 PlayingHud::~PlayingHud() { UnloadFont(font); }
 
 void PlayingHud::draw() {
-  if (drawButton(buttonExit, exitButtonText, GetThemeColor(PRIMARY_COLOR),
+  if (drawButton(buttonExit, exitButtonText, 20, GetThemeColor(PRIMARY_COLOR),
                  GetThemeColor(PRIMARY_COLOR_HOVER),
                  GetThemeColor(PRIMARY_COLOR_PRESS))) {
     exitButtonClicked = true;
   }
 
-  if (drawButton(buttonSettings, settingsButtonText,
+  if (drawButton(buttonSettings, settingsButtonText, 15 ,
                  GetThemeColor(PRIMARY_COLOR),
                  GetThemeColor(PRIMARY_COLOR_HOVER),
                  GetThemeColor(PRIMARY_COLOR_PRESS))) {
@@ -35,13 +35,14 @@ void PlayingHud::draw() {
     DrawRectangleRec(exitWindow, GetThemeColor(BG_COLOR_ALT));
     DrawTextEx(font, exitWindowText, exitWindowTextPosition, 16, 1,
                GetThemeColor(FONT_COLOR));
-    if (drawButton(buttonSurrender, surrenderButtonText,
+    if (drawButton(buttonSurrender, surrenderButtonText, 20,
                    GetThemeColor(PRIMARY_COLOR),
                    GetThemeColor(PRIMARY_COLOR_HOVER),
                    GetThemeColor(PRIMARY_COLOR_PRESS))) {
       surrenderButtonClicked = true;
     };
-    if (drawButton(buttonCancel, cancelButtonText, GetThemeColor(PRIMARY_COLOR),
+    if (drawButton(buttonCancel, cancelButtonText, 20,
+                   GetThemeColor(PRIMARY_COLOR),
                    GetThemeColor(PRIMARY_COLOR_HOVER),
                    GetThemeColor(PRIMARY_COLOR_PRESS))) {
       cancelButtonClicked = true;
@@ -49,8 +50,8 @@ void PlayingHud::draw() {
   }
   if (settingsButtonClicked) {
     DrawRectangleRec(settingsContainer, GetThemeColor(BG_COLOR_ALT));
-    if (drawButton(settingsContainer.x + 2, settingsContainer.y + 2, 20, 20,
-                   "Exit", GetThemeColor(SECONDARY_COLOR),
+    if (drawButton(settingsContainer.x + 20, 2, settingsContainer.y + 2, 20,
+                   "Exit", 20, GetThemeColor(SECONDARY_COLOR),
                    GetThemeColor(SECONDARY_COLOR_HOVER),
                    GetThemeColor(SECONDARY_COLOR_PRESS))) {
       settingsButtonClicked = false;
@@ -72,13 +73,13 @@ void PlayingHud::draw() {
   }
 }
 
-unsigned char PlayingHud::onTouch() {
+unsigned char PlayingHud::handleInput() {
   if (surrenderButtonClicked) {
     reset();
     return EXIT_BUTTON;
   }
   if (saveButtonClicked) {
-    return SAVE_SETTIGNS_BUTTON;
+    return SAVE_SETTINGS_BUTTON;
   }
   if (cancelButtonClicked) {
     reset();

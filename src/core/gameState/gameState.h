@@ -1,10 +1,11 @@
 #pragma once
 
-class GameState
-{
+#include <memory>
+
+class GameState {
 public:
-    virtual void handleInput() = 0;
-    virtual void update() = 0;
-    virtual void draw() = 0;
-    virtual void init() = 0;
+  virtual ~GameState() {}
+  virtual std::shared_ptr<GameState> handleInput() = 0;
+  virtual void update() = 0;
+  virtual void draw() = 0;
 };

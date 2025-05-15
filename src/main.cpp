@@ -1,5 +1,6 @@
 #include <memory>
 #include <vector>
+#include "core/gameState/menuState.h"
 #include "raylib.h"
 #include "core/gameInterface.h"
 #include "config.h"
@@ -26,11 +27,12 @@ int main()
 	// Utility function from resource_dir.h to find the resources folder and set it as the current working directory so we can load from it
 	SearchAndSetResourceDir("resources");
 
+	
 	std::shared_ptr<GameInterface> game = GameInterface::getGameInstance();
+	MenuState state = MenuState();
+	game->setState(state);
 
 	loadingScreen();
-
-	game->setState(GameInterface::menu);
 
 	// game loop
 	while (!(WindowShouldClose() || game->gameShouldClose())) // run the loop untill the user presses ESCAPE or presses the Close button on the window

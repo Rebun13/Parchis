@@ -32,8 +32,8 @@ public:
   Game &operator=(const Game &) = delete;
 
 private:
-  GameState *state_;
-  bool close = false;
+  std::shared_ptr<GameState> state_;
+  bool close{false};
   Font font_;
   static std::shared_ptr<Game> instance;
 };

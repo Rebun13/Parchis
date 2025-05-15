@@ -12,7 +12,7 @@ public:
     SettingsHud();
     ~SettingsHud();
     void draw() override;
-    unsigned char onTouch() override;
+    unsigned char handleInput() override;
     void reset() override;
 
 private:

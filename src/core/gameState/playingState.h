@@ -2,18 +2,15 @@
 
 #include "gameState.h"
 
-class PlayingState : public GameState
-{
+class PlayingState : public GameState {
 public:
-    PlayingState();
-    ~PlayingState();
-    void init() final;
-    void handleInput() final;
-    // void handleNetwork();
-    void update() final;
-    void draw() final;
+  PlayingState();
+  ~PlayingState();
+  std::shared_ptr<GameState> handleInput() final;
+  void update() final;
+  void draw() final;
 
 private:
-    class Hud *hud;
-    class GameMode *gamemode;
+  std::unique_ptr<class Hud> hud;
+  std::unique_ptr<class GameMode> gamemode;
 };

@@ -5,13 +5,13 @@
 
 class PlayingHud : public Hud {
 public:
-  static const unsigned char SAVE_SETTIGNS_BUTTON = 1;
+  static const unsigned char SAVE_SETTINGS_BUTTON = 1;
   static const unsigned char EXIT_BUTTON = 2;
 
   PlayingHud();
   ~PlayingHud();
   void draw() override;
-  unsigned char onTouch() override;
+  unsigned char handleInput() override;
   void reset() override;
 
 private:

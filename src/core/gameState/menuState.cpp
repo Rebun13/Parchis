@@ -1,48 +1,33 @@
 #include "menuState.h"
+#include "core/game.h"
+#include "core/gameState/playingState.h"
+#include "core/gameState/settingsState.h"
 #include "hud/hud.h"
 #include "hud/menuHud.h"
-#include "core/game.h"
 #include <memory>
 
-MenuState::~MenuState()
-{
-    delete hud;
+MenuState::MenuState() { hud = std::make_unique<MenuHud>(); }
+
+MenuState::~MenuState() { hud->reset(); }
+
+std::shared_ptr<GameState> MenuState::handleInput() {
+  unsigned char pressedButton = hud->handleInput();
+  switch (pressedButton) {
+  case MenuHud::PLAY_BUTTON:
+    return std::make_shared<PlayingState>();
+  case MenuHud::SETTINGS_BUTTON:
+    return std::make_shared<SettingsState>();
+  case MenuHud::EXIT_BUTTON:
+    Game::getGameInstance()->setClose_();
+    return nullptr;
+  default:
+    // call other entity's handleInput for some animation?
+    return nullptr;
+  }
 }
 
-void MenuState::init()
-{
-    hud = new MenuHud();
+void MenuState::update() {
+  // animations for making the menu more interesting
 }
 
-void MenuState::handleInput()
-{
-}
-
-void MenuState::update()
-{
-    std::shared_ptr<GameInterface> game = Game::getGameInstance();
-    unsigned char pressedButton = hud->onTouch();
-    switch (pressedButton)
-    {
-    case MenuHud::PLAY_BUTTON:
-        game->setState(Game::playing);
-        break;
-    case MenuHud::SETTINGS_BUTTON:
-        game->setState(Game::settings);
-        break;
-    case MenuHud::EXIT_BUTTON:
-        game->setClose_();
-        break;
-    default:
-        break;
-    }
-}
-
-void MenuState::draw()
-{
-    if (!hud)
-    {
-        init();
-    }
-    hud->draw();
-}
+void MenuState::draw() { hud->draw(); }

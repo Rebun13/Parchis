@@ -1,45 +1,40 @@
 #include "settingsState.h"
 #include "core/game.h"
+#include "core/gameState/menuState.h"
 #include "hud/settingsHud.h"
 
 
-void SettingsState::init()
+SettingsState::SettingsState()
 {
-    hud = new SettingsHud();
+    hud = std::make_unique<SettingsHud>();
 }
 
 SettingsState::~SettingsState()
 {
-    delete hud;
+    hud.reset();
 }
 
-void SettingsState::handleInput()
+std::shared_ptr<GameState> SettingsState::handleInput()
 {
+    unsigned char pressedButton = hud->handleInput();
+    switch (pressedButton)
+    {
+    case SettingsHud::SAVE_BUTTON:
+        // save settings
+        return nullptr;
+    case SettingsHud::EXIT_BUTTON:
+        return std::make_shared<MenuState>();
+    default:
+        // ?
+        return nullptr;
+    }
 }
 
 void SettingsState::update()
 {
-    std::shared_ptr<GameInterface> game = Game::getGameInstance();
-    unsigned char pressedButton = hud->onTouch();
-    switch (pressedButton)
-    {
-    case SettingsHud::SAVE_BUTTON:
-        game->saveSettings(); // Not implemented yet
-        break;
-    case SettingsHud::EXIT_BUTTON:
-        game->setState(Game::menu);
-        break;
-    default:
-        // ?
-        break;
-    }
-}
+}   
 
 void SettingsState::draw()
 {
-    if (!hud)
-    {
-        init();
-    }
     hud->draw();
 }
