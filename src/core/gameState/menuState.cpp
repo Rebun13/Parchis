@@ -10,13 +10,13 @@ MenuState::MenuState() { hud = std::make_unique<MenuHud>(); }
 
 MenuState::~MenuState() { hud->reset(); }
 
-std::shared_ptr<GameState> MenuState::handleInput() {
+GameState* MenuState::handleInput() {
   unsigned char pressedButton = hud->handleInput();
   switch (pressedButton) {
   case MenuHud::PLAY_BUTTON:
-    return std::make_shared<PlayingState>();
+    return new PlayingState();
   case MenuHud::SETTINGS_BUTTON:
-    return std::make_shared<SettingsState>();
+    return new SettingsState();
   case MenuHud::EXIT_BUTTON:
     Game::getGameInstance()->setClose_();
     return nullptr;

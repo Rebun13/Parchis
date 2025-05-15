@@ -13,7 +13,7 @@ public:
     void init() final;
     void update() final;
     void draw() final;
-    std::shared_ptr<GameState> handleInput() final;
+    GameState* handleInput() final;
 
 private:
     Rectangle buttonTwoPlayerRect {48, 240, 96, 72};

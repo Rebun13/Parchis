@@ -73,10 +73,10 @@ void RegularGameMode::draw() {
   }
 }
 
-std::shared_ptr<GameState> RegularGameMode::handleInput() {
+GameState* RegularGameMode::handleInput() {
   std::shared_ptr<GameInterface> game = Game::getGameInstance();
   if (!gameStarted && exitButtonClicked) {
-    return std::make_shared<MenuState>();
+    return new MenuState();;
   }
   return nullptr;
 }

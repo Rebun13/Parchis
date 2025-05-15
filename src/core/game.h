@@ -4,12 +4,15 @@
 #include "raylib.h"
 #include <memory>
 
-class Game : public GameInterface {
+class Game : public GameInterface
+{
 public:
   Game();
   ~Game();
-  static std::shared_ptr<GameInterface> gameInstance() {
-    if (!instance) {
+  static std::shared_ptr<GameInterface> gameInstance()
+  {
+    if (!instance)
+    {
       instance = std::shared_ptr<Game>(new Game());
     }
     return std::shared_ptr<Game>(instance);
@@ -32,7 +35,7 @@ public:
   Game &operator=(const Game &) = delete;
 
 private:
-  std::shared_ptr<GameState> state_;
+  GameState *state_;
   bool close{false};
   Font font_;
   static std::shared_ptr<Game> instance;

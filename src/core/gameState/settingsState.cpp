@@ -14,7 +14,7 @@ SettingsState::~SettingsState()
     hud.reset();
 }
 
-std::shared_ptr<GameState> SettingsState::handleInput()
+GameState* SettingsState::handleInput()
 {
     unsigned char pressedButton = hud->handleInput();
     switch (pressedButton)
@@ -23,7 +23,7 @@ std::shared_ptr<GameState> SettingsState::handleInput()
         // save settings
         return nullptr;
     case SettingsHud::EXIT_BUTTON:
-        return std::make_shared<MenuState>();
+        return new MenuState();
     default:
         // ?
         return nullptr;

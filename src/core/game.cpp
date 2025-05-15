@@ -4,7 +4,7 @@
 #include <memory>
 #include <string>
 
-std::shared_ptr<Game> Game::instance {nullptr};
+std::shared_ptr<Game> Game::instance{nullptr};
 
 Game::Game() {
   std::string workingDir(GetWorkingDirectory());
@@ -12,14 +12,16 @@ Game::Game() {
   font_ = LoadFontEx(workingDir.c_str(), 96, nullptr, 0);
 }
 
-Game::~Game() {
-  UnloadFont(font_);
-}
+Game::~Game() { UnloadFont(font_); }
 
 void Game::draw() { state_->draw(); }
 
 void Game::handleInput() {
-  state_->handleInput();
+  GameState *newState = state_->handleInput();
+  if (newState) {
+    delete state_;
+    state_ = newState;
+  }
 }
 
 void Game::update() { state_->update(); }
@@ -34,9 +36,7 @@ void Game::saveSettings() {}
 
 Font Game::getFont() { return font_; }
 
-void Game::setState(GameState &state) {
-  state_ = std::shared_ptr<GameState>(&state);
-}
+void Game::setState(GameState &state) { state_ = &state; }
 
 GameState &Game::getState() { return *state_; }
 

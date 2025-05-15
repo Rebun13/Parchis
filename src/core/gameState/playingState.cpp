@@ -19,7 +19,7 @@ PlayingState::~PlayingState()
     gamemode.reset();
 }
 
-std::shared_ptr<GameState> PlayingState::handleInput()
+GameState* PlayingState::handleInput()
 {
     unsigned char pressedButton = hud->handleInput();
     switch(pressedButton) {
@@ -27,7 +27,7 @@ std::shared_ptr<GameState> PlayingState::handleInput()
         // TODO: get volume variables (make them public) and save them to settings file
         return nullptr;
     case PlayingHud::EXIT_BUTTON:
-        return std::make_shared<MenuState>();
+        return new MenuState();
     default:
         return gamemode->handleInput();
     }

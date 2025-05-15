@@ -6,7 +6,7 @@ class PlayingState : public GameState {
 public:
   PlayingState();
   ~PlayingState();
-  std::shared_ptr<GameState> handleInput() final;
+  GameState* handleInput() final;
   void update() final;
   void draw() final;
 
