@@ -5,6 +5,7 @@
 #include "hud/buttons.h"
 #include "raylib.h"
 #include "style/colors.h"
+#include <iostream>
 #include <memory>
 
 RegularGameMode::RegularGameMode() {
@@ -24,7 +25,6 @@ void RegularGameMode::update() { board->update(); }
 
 void RegularGameMode::draw() {
   if (!gameStarted) {
-    // TODO: selector of number of players
     if (drawButton(buttonTwoPlayerRect.x, buttonTwoPlayerRect.y,
                    buttonTwoPlayerRect.width, buttonTwoPlayerRect.height,
                    buttonTwoPlayerText, 20,
@@ -73,10 +73,12 @@ void RegularGameMode::draw() {
   }
 }
 
-GameState* RegularGameMode::handleInput() {
+GameState *RegularGameMode::handleInput() {
   GameInterface *game = Game::getGameInstance();
   if (!gameStarted && exitButtonClicked) {
-    return new MenuState();;
+    std::cout << "Returning to menu" << std::endl;
+    exitButtonClicked = false;
+    return new MenuState();
   }
   return nullptr;
 }

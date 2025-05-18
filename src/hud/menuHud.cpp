@@ -2,6 +2,7 @@
 #include "hud/buttons.h"
 #include "style/colors.h"
 #include "core/game.h"
+#include <iostream>
 
 MenuHud::~MenuHud() { }
 
@@ -45,6 +46,7 @@ unsigned char MenuHud::handleInput() {
     return SETTINGS_BUTTON;
   } else if (exitButtonClicked) {
     // TODO: play sound
+    std::cout << "HUD: EXIT BUTTON CLICKED" << std::endl;
     reset();
     return EXIT_BUTTON;
   }

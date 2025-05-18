@@ -2,7 +2,6 @@
 #include "raylib.h"
 #include <cassert>
 #include <string>
-#include <iostream>
 
 Game *Game::instance{nullptr};
 
@@ -15,7 +14,6 @@ Game::Game() {
 
 Game::~Game() {
   UnloadFont(font_);
-  std::cerr << "################ FONT UNLIADED ################" << std::endl;
 }
 
 void Game::draw() {

@@ -12,7 +12,7 @@ int drawButton(Rectangle size, const char *text, int fontSize, Color color,
     DrawRectangleRounded(size, 0.1, 6, color);
     DrawRectangleRoundedLinesEx(size, 0.1, 6, 4, pressedColor);
   } else if (CheckCollisionPointRec(GetMousePosition(), size)) {
-    if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
       DrawRectangleRounded(size, 0.1, 6, pressedColor);
       val = 1;
     } else {
@@ -57,7 +57,7 @@ int drawSlider(Rectangle size, const char *text, float &value, Color color,
   DrawRectangleRec({size.x + minusSize.x + 2, size.y + textSize.y + 2, width,
                     size.y - textSize.y},
                    color);
-  if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
+  if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) &&
       CheckCollisionPointRec(GetMousePosition(),
                              {size.x + minusSize.x, size.y + textSize.y,
                               size.width - minusSize.x - plusSize.x,

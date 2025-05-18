@@ -4,6 +4,7 @@
 #include "core/gameState/settingsState.h"
 #include "hud/menuHud.h"
 #include <memory>
+#include <iostream>
 
 MenuState::MenuState() { hud = std::make_unique<MenuHud>(); }
 
@@ -15,6 +16,7 @@ GameState *MenuState::handleInput() {
   case MenuHud::SETTINGS_BUTTON:
     return new SettingsState();
   case MenuHud::EXIT_BUTTON:
+    std::cout << "STATE: EXIT GAME CLICKED" << std::endl;
     Game::getGameInstance()->setClose_();
     return nullptr;
   default:
