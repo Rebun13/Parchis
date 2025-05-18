@@ -69,12 +69,12 @@ void RegularGameMode::draw() {
       exitButtonClicked = true;
     }
   } else {
-    // TODO: draw board, tokens and hud.setState(
+    // TODO: draw board, tokens and hud(
   }
 }
 
 GameState* RegularGameMode::handleInput() {
-  std::shared_ptr<GameInterface> game = Game::getGameInstance();
+  GameInterface *game = Game::getGameInstance();
   if (!gameStarted && exitButtonClicked) {
     return new MenuState();;
   }

@@ -3,15 +3,15 @@
 #include "style/colors.h"
 #include "core/game.h"
 
-MenuHud::~MenuHud() { UnloadFont(font); }
+MenuHud::~MenuHud() { }
 
 MenuHud::MenuHud() {
   font = Game::getGameInstance()->getFont();
-  titleSize = MeasureTextEx(font, title, 90, 5);
+  titleSize = MeasureTextEx(*font, title, 90, 5);
 }
 
 void MenuHud::draw() {
-  DrawTextEx(font, title, {(480 - titleSize.x) / 2, 100}, 90, 5,
+  DrawTextEx(*font, title, {(480 - titleSize.x) / 2, 100}, 90, 5,
              {255, 255, 255, 255});
 
   if (drawButton((480 - titleSize.x) / 2, buttonPlay_y, titleSize.x,

@@ -1,5 +1,4 @@
 #include "settingsState.h"
-#include "core/game.h"
 #include "core/gameState/menuState.h"
 #include "hud/settingsHud.h"
 
@@ -7,11 +6,6 @@
 SettingsState::SettingsState()
 {
     hud = std::make_unique<SettingsHud>();
-}
-
-SettingsState::~SettingsState()
-{
-    hud.reset();
 }
 
 GameState* SettingsState::handleInput()

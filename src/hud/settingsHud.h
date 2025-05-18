@@ -44,5 +44,5 @@ private:
     const char *fxVolumeLabelText = "FX Volume";
     const char *generalVolumeLabelText = "General Volume";
 
-    Font font;
+    Font *font;
 };

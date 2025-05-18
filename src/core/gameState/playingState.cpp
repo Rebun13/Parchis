@@ -13,12 +13,6 @@ PlayingState::PlayingState()
     gamemode = std::make_unique<RegularGameMode>();
 }
 
-PlayingState::~PlayingState()
-{
-    hud.reset();
-    gamemode.reset();
-}
-
 GameState* PlayingState::handleInput()
 {
     unsigned char pressedButton = hud->handleInput();

@@ -2,6 +2,7 @@
 #include "hud/buttons.h"
 #include "raylib.h"
 #include "style/colors.h"
+#include "core/gameInterface.h"
 
 #if defined(PLATFORM_DESKTOP)
 #define GLSL_VERSION 330
@@ -10,12 +11,12 @@
 #endif
 
 PlayingHud::PlayingHud() {
-  font = LoadFont("fonts/JetSet-8j1J.ttf");
-  exitWindowTextSize = MeasureTextEx(font, exitWindowText, 16, 1);
+  font = GameInterface::getGameInstance()->getFont();
+  exitWindowTextSize = MeasureTextEx(*font, exitWindowText, 16, 1);
   exitWindowTextPosition.x = (480.f - exitWindowTextSize.x) / 2.f;
 }
 
-PlayingHud::~PlayingHud() { UnloadFont(font); }
+PlayingHud::~PlayingHud() { }
 
 void PlayingHud::draw() {
   if (drawButton(buttonExit, exitButtonText, 20, GetThemeColor(PRIMARY_COLOR),
@@ -33,7 +34,7 @@ void PlayingHud::draw() {
 
   if (exitButtonClicked) {
     DrawRectangleRec(exitWindow, GetThemeColor(BG_COLOR_ALT));
-    DrawTextEx(font, exitWindowText, exitWindowTextPosition, 16, 1,
+    DrawTextEx(*font, exitWindowText, exitWindowTextPosition, 16, 1,
                GetThemeColor(FONT_COLOR));
     if (drawButton(buttonSurrender, surrenderButtonText, 20,
                    GetThemeColor(PRIMARY_COLOR),

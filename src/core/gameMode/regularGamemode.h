@@ -1,7 +1,7 @@
 #pragma once
 
 #include "gameMode.h"
-#include <memory>
+
 class Rectangle;
 
 class RegularGameMode : public GameMode

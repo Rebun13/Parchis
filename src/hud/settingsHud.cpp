@@ -2,15 +2,16 @@
 #include "core/settings.h"
 #include "hud/buttons.h"
 #include "style/colors.h"
+#include "core/gameInterface.h"
 
 SettingsHud::SettingsHud() {
-  font = LoadFont("fonts/VT323.ttf");
+  font = GameInterface::getGameInstance()->getFont();
   generalVolume = (float)Settings::getSetting(GENERAL_VOLUME) / 100.f;
   musicVolume = (float)Settings::getSetting(MUSIC_VOLUME) / 100.f;
   fxVolume = (float)Settings::getSetting(FX_VOLUME) / 100.f;
 }
 
-SettingsHud::~SettingsHud() { UnloadFont(font); }
+SettingsHud::~SettingsHud() { }
 
 void SettingsHud::draw() {
   if (drawButton(exitButton, BackButtonText, 20, GetThemeColor(PRIMARY_COLOR),
@@ -27,7 +28,7 @@ void SettingsHud::draw() {
              GetThemeColor(PRIMARY_COLOR), GetThemeColor(PRIMARY_COLOR_HOVER),
              GetThemeColor((PRIMARY_COLOR_PRESS)));
 
-  DrawTextEx(font, fxVolumeLabelText, fxVolumeLabelCoord, 20, 5, WHITE);
+  DrawTextEx(*font, fxVolumeLabelText, fxVolumeLabelCoord, 20, 5, WHITE);
   drawSlider(fxVolumeSlider, fxVolumeLabelText, fxVolume,
              GetThemeColor(PRIMARY_COLOR), GetThemeColor(PRIMARY_COLOR_HOVER),
              GetThemeColor((PRIMARY_COLOR_PRESS)));

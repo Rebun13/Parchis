@@ -1,14 +1,16 @@
+#include <iostream>
 #include <memory>
 #include <vector>
-#include "core/gameState/menuState.h"
 #include "raylib.h"
 #include "core/gameInterface.h"
+#include "core/gameState/menuState.h"
 #include "config.h"
 // #include "network.h"
 
 #include "resource_dir.h" // utility header for SearchAndSetResourceDir
 #include "style/colors.h"
 
+void gameLoop();
 void loadingScreen();
 
 int main()
@@ -27,10 +29,23 @@ int main()
 	// Utility function from resource_dir.h to find the resources folder and set it as the current working directory so we can load from it
 	SearchAndSetResourceDir("resources");
 
-	
-	std::shared_ptr<GameInterface> game = GameInterface::getGameInstance();
-	MenuState state = MenuState();
-	game->setState(state);
+	try {
+		gameLoop();
+	} catch (const std::exception &e) {
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+	// cleanup
+	// destroy the window and cleanup the OpenGL context
+	CloseWindow();
+	std::cout << "################ EXIT DONE! ################" << std::endl;
+	return 0;
+}
+
+void gameLoop()
+{
+	GameInterface *game = GameInterface::getGameInstance();
+	game->setState(new MenuState());
 
 	loadingScreen();
 
@@ -52,19 +67,16 @@ int main()
 		EndDrawing();
 	};
 
-	// cleanup
-	// destroy the window and cleanup the OpenGL context
-	CloseWindow();
-	return 0;
+	delete game;
 }
 
 void loadingScreen()
 {
 	unsigned char opacity = 0;
-	Font font = GameInterface::getGameInstance()->getFont();
-	Vector2 sizeA = MeasureTextEx(font, "PARCHIS", 90, 5);
-	Vector2 sizeB = MeasureTextEx(font, "Estudio CEIVE", 35, 5);
-	Vector2 sizeC = MeasureTextEx(font, "by Rebun", 20, 5);
+	Font *font = GameInterface::getGameInstance()->getFont();
+	Vector2 sizeA = MeasureTextEx(*font, "PARCHIS", 90, 5);
+	Vector2 sizeB = MeasureTextEx(*font, "Estudio CEIVE", 35, 5);
+	Vector2 sizeC = MeasureTextEx(*font, "by Rebun", 20, 5);
 
 	Shader shader = LoadShader(0, TextFormat("shaders/glsl%i/bloom.fs", GLSL_VERSION));
 
@@ -85,9 +97,9 @@ void loadingScreen()
 			BeginShaderMode(shader);
 		}
 		ClearBackground(GetThemeColor(BG_COLOR));
-		DrawTextEx(font, "PARCHIS", {(480 - sizeA.x) / 2, 220}, 90, 5, WHITE);
-		DrawTextEx(font, "Estudio CEIVE", {(480 - sizeB.x) / 2, 600}, 35, 5, WHITE);
-		DrawTextEx(font, "by Rebun", {(480 - sizeC.x) / 2, 645}, 20, 5, WHITE);
+		DrawTextEx(*font, "PARCHIS", {(480 - sizeA.x) / 2, 220}, 90, 5, WHITE);
+		DrawTextEx(*font, "Estudio CEIVE", {(480 - sizeB.x) / 2, 600}, 35, 5, WHITE);
+		DrawTextEx(*font, "by Rebun", {(480 - sizeC.x) / 2, 645}, 20, 5, WHITE);
 		if (shaderActive)
 		{
 			EndShaderMode();
@@ -99,7 +111,7 @@ void loadingScreen()
 	{
 		BeginDrawing();
 		ClearBackground(GetThemeColor(BG_COLOR));
-		DrawTextEx(font, "PARCHIS", {(480 - sizeA.x) / 2, (220 - elapsedTime * 120 / animationDuration)}, 90, 5, {255, 255, 255, 255});
+		DrawTextEx(*font, "PARCHIS", {(480 - sizeA.x) / 2, (220 - elapsedTime * 120 / animationDuration)}, 90, 5, {255, 255, 255, 255});
 		EndDrawing();
 	}
 	animationDuration = 0.15f;
@@ -107,7 +119,7 @@ void loadingScreen()
 	{
 		BeginDrawing();
 		ClearBackground(elapsedTime > .05f && elapsedTime < .1f ? GetThemeColor(BG_COLOR) : WHITE);
-		DrawTextEx(font, "PARCHIS", {(480 - sizeA.x) / 2, 100}, 90, 5, {255, 255, 255, 255});
+		DrawTextEx(*font, "PARCHIS", {(480 - sizeA.x) / 2, 100}, 90, 5, {255, 255, 255, 255});
 		EndDrawing();
 	}
 	UnloadShader(shader);

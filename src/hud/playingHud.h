@@ -37,7 +37,7 @@ private:
   bool surrenderButtonClicked = false;
   bool cancelButtonClicked = false;
 
-  Font font;
+  Font *font;
   Vector2 exitWindowTextSize;
 
   // Settings

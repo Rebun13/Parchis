@@ -5,12 +5,12 @@
 
 int drawButton(Rectangle size, const char *text, int fontSize, Color color,
                Color hoverColor, Color pressedColor, bool disabled) {
-  Font font = Game::getGameInstance()->getFont();
-  Vector2 textSize = MeasureTextEx(font, text, fontSize, 1);
+  Font *font = Game::getGameInstance()->getFont();
+  Vector2 textSize = MeasureTextEx(*font, text, fontSize, 1);
   int val = 0;
   if (disabled) {
     DrawRectangleRounded(size, 0.1, 6, color);
-    DrawRectangleRoundedLinesEx(size, 0.1, 6, 3, pressedColor);
+    DrawRectangleRoundedLinesEx(size, 0.1, 6, 4, pressedColor);
   } else if (CheckCollisionPointRec(GetMousePosition(), size)) {
     if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
       DrawRectangleRounded(size, 0.1, 6, pressedColor);
@@ -22,7 +22,7 @@ int drawButton(Rectangle size, const char *text, int fontSize, Color color,
     DrawRectangleRounded(size, 0.1, 6, color);
   }
   DrawRectangleRoundedLinesEx(size, 0.1, 6, 3, pressedColor);
-  DrawTextEx(font, text,
+  DrawTextEx(*font, text,
              {size.x + (size.width - textSize.x) / 2,
               size.y + (size.height - textSize.y) / 2},
              fontSize, 1, BLACK);
@@ -39,18 +39,18 @@ int drawButton(int x, int y, int width, int height, const char *text,
 
 int drawSlider(Rectangle size, const char *text, float &value, Color color,
                Color hoverColor, Color pressedColor) {
-  Font font = Game::getGameInstance()->getFont();
-  Vector2 textSize = MeasureTextEx(font, text, 48, 1);
-  Vector2 minusSize = MeasureTextEx(font, "-", 48, 1);
-  Vector2 plusSize = MeasureTextEx(font, "+", 48, 1);
+  Font *font = Game::getGameInstance()->getFont();
+  Vector2 textSize = MeasureTextEx(*font, text, 48, 1);
+  Vector2 minusSize = MeasureTextEx(*font, "-", 48, 1);
+  Vector2 plusSize = MeasureTextEx(*font, "+", 48, 1);
   float width = (size.width - minusSize.x - plusSize.x) * 100 / value;
   // Label
-  DrawTextEx(font, text, {size.x, size.y}, 48, 1, GetThemeColor(FONT_COLOR));
+  DrawTextEx(*font, text, {size.x, size.y}, 48, 1, GetThemeColor(FONT_COLOR));
   // Minus symbol
-  DrawTextEx(font, text, {size.x, size.y + textSize.y + 2}, 48, 1,
+  DrawTextEx(*font, text, {size.x, size.y + textSize.y + 2}, 48, 1,
              GetThemeColor(FONT_COLOR));
   // Plus symbol
-  DrawTextEx(font, text,
+  DrawTextEx(*font, text,
              {size.x + size.width - plusSize.x, size.y + textSize.y + 2}, 48, 1,
              GetThemeColor(FONT_COLOR));
   // Slider

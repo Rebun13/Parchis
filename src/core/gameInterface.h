@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include "core/gameState/gameState.h"
 
 class GameInterface {
@@ -14,9 +12,8 @@ public:
   virtual bool gameShouldClose() = 0;
   virtual void setClose_() = 0;
   virtual void saveSettings() = 0;
-  virtual void setState(GameState &state) = 0;
-  virtual GameState &getState() = 0;
-  virtual class Font getFont() = 0;
+  virtual void setState(GameState *state) = 0;
+  virtual class Font *getFont() = 0;
 
-  static std::shared_ptr<GameInterface> getGameInstance();
+  static GameInterface *getGameInstance();
 };

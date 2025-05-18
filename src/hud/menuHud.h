@@ -32,5 +32,5 @@ private:
     bool settingsButtonClicked = false;
     bool exitButtonClicked = false;
 
-    Font font;
+    Font *font;
 };

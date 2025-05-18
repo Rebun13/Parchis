@@ -1,24 +1,32 @@
 #include "game.h"
 #include "raylib.h"
 #include <cassert>
-#include <memory>
 #include <string>
+#include <iostream>
 
-std::shared_ptr<Game> Game::instance{nullptr};
+Game *Game::instance{nullptr};
 
 Game::Game() {
   std::string workingDir(GetWorkingDirectory());
   workingDir.append("/fonts/JetSet-8j1J.ttf");
   font_ = LoadFontEx(workingDir.c_str(), 96, nullptr, 0);
+  state_ = nullptr;
 }
 
-Game::~Game() { UnloadFont(font_); }
+Game::~Game() {
+  UnloadFont(font_);
+  std::cerr << "################ FONT UNLIADED ################" << std::endl;
+}
 
-void Game::draw() { state_->draw(); }
+void Game::draw() {
+  if (state_)
+    state_->draw();
+}
 
 void Game::handleInput() {
-  GameState *newState = state_->handleInput();
-  if (newState) {
+  if (!state_)
+    return;
+  if (GameState *newState = state_->handleInput()) {
     delete state_;
     state_ = newState;
   }
@@ -34,12 +42,15 @@ void Game::setClose_() { close = true; }
 
 void Game::saveSettings() {}
 
-Font Game::getFont() { return font_; }
+void Game::setState(GameState *state) {
+  assert(state);
+  if (state_)
+    delete state_;
+  state_ = state;
+}
 
-void Game::setState(GameState &state) { state_ = &state; }
+Font *Game::getFont() { return &font_; }
 
-GameState &Game::getState() { return *state_; }
-
-std::shared_ptr<GameInterface> GameInterface::getGameInstance() {
+GameInterface *GameInterface::getGameInstance() {
   return Game::gameInstance();
 };

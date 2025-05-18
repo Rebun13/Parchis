@@ -2,15 +2,12 @@
 #include "core/game.h"
 #include "core/gameState/playingState.h"
 #include "core/gameState/settingsState.h"
-#include "hud/hud.h"
 #include "hud/menuHud.h"
 #include <memory>
 
 MenuState::MenuState() { hud = std::make_unique<MenuHud>(); }
 
-MenuState::~MenuState() { hud->reset(); }
-
-GameState* MenuState::handleInput() {
+GameState *MenuState::handleInput() {
   unsigned char pressedButton = hud->handleInput();
   switch (pressedButton) {
   case MenuHud::PLAY_BUTTON:

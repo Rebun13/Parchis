@@ -2,21 +2,11 @@
 
 #include "core/gameInterface.h"
 #include "raylib.h"
-#include <memory>
 
-class Game : public GameInterface
-{
+class Game : public GameInterface {
 public:
   Game();
   ~Game();
-  static std::shared_ptr<GameInterface> gameInstance()
-  {
-    if (!instance)
-    {
-      instance = std::shared_ptr<Game>(new Game());
-    }
-    return std::shared_ptr<Game>(instance);
-  }
 
   /* INTERFACE */
   virtual void handleInput() final;
@@ -25,9 +15,8 @@ public:
   virtual void beginGame() final;
   virtual bool gameShouldClose() final;
   virtual void setClose_() final;
-  virtual GameState &getState() final;
-  virtual void setState(GameState &state) final;
-  virtual Font getFont() final;
+  virtual void setState(GameState *state) final;
+  virtual Font *getFont() final;
   // TODO: add arguments and save using settings::saveSettings()
   virtual void saveSettings() final;
   /* END INTERFACE */
@@ -38,5 +27,13 @@ private:
   GameState *state_;
   bool close{false};
   Font font_;
-  static std::shared_ptr<Game> instance;
+  static Game *instance;
+
+public:
+  static GameInterface *gameInstance() {
+    if (!instance) {
+      instance = new Game();
+    }
+    return instance;
+  }
 };

@@ -75,6 +75,10 @@
           "ignoreFailures": true
         }
       ]
-    }
-  ]
+    },
+  ],
+  "logging": {
+    "engineLogging": true,
+    "traceResponse": true
+  }
 }
