@@ -73,7 +73,7 @@ void loadingScreen()
 {
 	unsigned char opacity = 0;
 	Font *font = GameInterface::getGameInstance()->getFont();
-	Vector2 sizeA = MeasureTextEx(*font, "PARCHIS", 90, 5);
+	Vector2 sizeA = MeasureTextEx(*font, "PARCHIS", 70, 5);
 	Vector2 sizeB = MeasureTextEx(*font, "Estudio CEIVE", 35, 5);
 	Vector2 sizeC = MeasureTextEx(*font, "by Rebun", 20, 5);
 
@@ -96,7 +96,7 @@ void loadingScreen()
 			BeginShaderMode(shader);
 		}
 		ClearBackground(GetThemeColor(BG_COLOR));
-		DrawTextEx(*font, "PARCHIS", {(480 - sizeA.x) / 2, 220}, 90, 5, WHITE);
+		DrawTextEx(*font, "PARCHIS", {(480 - sizeA.x) / 2, 220}, 70, 5, WHITE);
 		DrawTextEx(*font, "Estudio CEIVE", {(480 - sizeB.x) / 2, 600}, 35, 5, WHITE);
 		DrawTextEx(*font, "by Rebun", {(480 - sizeC.x) / 2, 645}, 20, 5, WHITE);
 		if (shaderActive)
@@ -110,7 +110,7 @@ void loadingScreen()
 	{
 		BeginDrawing();
 		ClearBackground(GetThemeColor(BG_COLOR));
-		DrawTextEx(*font, "PARCHIS", {(480 - sizeA.x) / 2, (220 - elapsedTime * 120 / animationDuration)}, 90, 5, {255, 255, 255, 255});
+		DrawTextEx(*font, "PARCHIS", {(480 - sizeA.x) / 2, (220 - elapsedTime * 133 / animationDuration)}, 70, 5, {255, 255, 255, 255});
 		EndDrawing();
 	}
 	animationDuration = 0.15f;
@@ -118,7 +118,7 @@ void loadingScreen()
 	{
 		BeginDrawing();
 		ClearBackground(elapsedTime > .05f && elapsedTime < .1f ? GetThemeColor(BG_COLOR) : WHITE);
-		DrawTextEx(*font, "PARCHIS", {(480 - sizeA.x) / 2, 100}, 90, 5, {255, 255, 255, 255});
+		DrawTextEx(*font, "PARCHIS", {(480 - sizeA.x) / 2, 87}, 70, 5, {255, 255, 255, 255});
 		EndDrawing();
 	}
 	UnloadShader(shader);

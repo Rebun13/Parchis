@@ -3,10 +3,19 @@
 #include "core/gameState/playingState.h"
 #include "core/gameState/settingsState.h"
 #include "hud/menuHud.h"
+#include "raylib.h"
 #include <memory>
 #include <iostream>
+#include <random>
 
-MenuState::MenuState() { hud = std::make_unique<MenuHud>(); }
+MenuState::MenuState() {
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<> distr(0, 3); 
+  colorIndex = distr(gen);
+  bg = LoadTexture(bgOptions[colorIndex].c_str());
+  hud = std::make_unique<MenuHud>(colorIndex);
+}
 
 GameState *MenuState::handleInput() {
   unsigned char pressedButton = hud->handleInput();
@@ -27,6 +36,10 @@ GameState *MenuState::handleInput() {
 
 void MenuState::update() {
   // animations for making the menu more interesting
+  hud->update();
 }
 
-void MenuState::draw() { hud->draw(); }
+void MenuState::draw() {
+  DrawTexture(bg, 0, 0, WHITE);
+  hud->draw();
+}

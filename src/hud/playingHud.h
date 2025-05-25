@@ -13,6 +13,7 @@ public:
   void draw() override;
   unsigned char handleInput() override;
   void reset() override;
+  void update() override;
 
 private:
   const char *settingsButtonText = "SETTINGS";

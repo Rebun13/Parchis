@@ -95,3 +95,5 @@ void PlayingHud::reset() {
   exitButtonClicked = false;
   saveButtonClicked = false;
 }
+
+void PlayingHud::update() {}

@@ -58,3 +58,6 @@ void SettingsHud::reset() {
   saveButtonClicked = false;
   exitButtonClicked = false;
 }
+
+void SettingsHud::update() {
+}

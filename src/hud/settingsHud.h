@@ -11,9 +11,10 @@ public:
 
     SettingsHud();
     ~SettingsHud();
-    void draw() override;
-    unsigned char handleInput() override;
-    void reset() override;
+    void draw() final;
+    unsigned char handleInput() final;
+    void reset() final;
+    void update() final;
 
 private:
     Vector2 volumeContainerAnchor = {48, 120};

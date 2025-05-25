@@ -2,35 +2,63 @@
 
 #include "hud.h"
 #include "raylib.h"
+#include <array>
+#include <string>
 
-class MenuHud : public Hud
-{
+struct MenuButton {
+  Rectangle rect;
+  std::string text;
+  Vector2 textPositionIddle;
+  Vector2 textPositionSelected;
+  float tokenPosition;
+};
+
+class MenuHud : public Hud {
 public:
-    static const unsigned char PLAY_BUTTON = 0;
-    static const unsigned char SETTINGS_BUTTON = 1;
-    static const unsigned char EXIT_BUTTON = 2;
+  static const unsigned char PLAY_BUTTON{0};
+  static const unsigned char SETTINGS_BUTTON{1};
+  static const unsigned char EXIT_BUTTON{2};
 
-    MenuHud();
-    ~MenuHud();
-    void draw() override;
-    unsigned char handleInput() override;
-    void reset() override;
+  MenuHud(int color = 0);
+  ~MenuHud();
+  void draw() final;
+  unsigned char handleInput() final;
+  void reset() final;
+  void update() final;
 
 private:
-    Vector2 titleSize;
-    const char* title = "PARCHIS";
-    const char* playButtonText = "PLAY";
-    const char* settingsButtonText = "SETTINGS";
-    const char* exitButtonText = "EXIT";
+  void moveToken(float position);
 
-    const float buttonPlay_y = 300.f;
-    const float buttonSettings_y = 400.f;
-    const float buttonExit_y = 500.f;
-    const float buttonHeight = 80.f;
+  // Vector2 titleSize;
+  const float buttonWidth{266.f};
+  const float buttonHeight{85.f};
+  const float buttonLeftMargin{110.f};
 
-    bool playButtonClicked = false;
-    bool settingsButtonClicked = false;
-    bool exitButtonClicked = false;
+  const std::string title{"PARCHIS"};
 
-    Font *font;
+  MenuButton playButton{{buttonLeftMargin, 266.f, buttonWidth, buttonHeight},
+                        "PLAY",
+                        {0, 0},
+                        {0, 0},
+                        0};
+  MenuButton settingsButton{
+      {buttonLeftMargin, 356.f, buttonWidth, buttonHeight},
+      "SETTINGS",
+      {0,0},
+      {0,0},
+      0};
+  MenuButton exitButton{{buttonLeftMargin, 446.f, buttonWidth, buttonHeight},
+                        "EXIT",
+                        {0,0},
+                        {0,0},
+                        0};
+
+  Font *font;
+  float tokenPositionX;
+  float tokenCurrentPosition;
+  float tokenNextPosition;
+  float tokenRadius{30.f};
+  float tokenSpeed{400.f};
+  int colorIndex;
+  std::array<Color, 4> tokenColors{BLUE, GREEN, RED, YELLOW};
 };
