@@ -28,7 +28,6 @@ void SettingsHud::draw() {
              GetThemeColor(PRIMARY_COLOR), GetThemeColor(PRIMARY_COLOR_HOVER),
              GetThemeColor((PRIMARY_COLOR_PRESS)));
 
-  DrawTextEx(*font, fxVolumeLabelText, fxVolumeLabelCoord, 20, 5, WHITE);
   drawSlider(fxVolumeSlider, fxVolumeLabelText, fxVolume,
              GetThemeColor(PRIMARY_COLOR), GetThemeColor(PRIMARY_COLOR_HOVER),
              GetThemeColor((PRIMARY_COLOR_PRESS)));

@@ -2,6 +2,7 @@
 #include "core/game.h"
 #include "raylib.h"
 #include "style/colors.h"
+#include <iostream>
 
 int drawButton(Rectangle size, const char *text, int fontSize, Color color,
                Color hoverColor, Color pressedColor, bool disabled) {
@@ -30,38 +31,40 @@ int drawButton(Rectangle size, const char *text, int fontSize, Color color,
 }
 
 int drawButton(int x, int y, int width, int height, const char *text,
-               int fontSize, Color color, Color hoverColor,
-               Color pressedColor, bool disabled) {
+               int fontSize, Color color, Color hoverColor, Color pressedColor,
+               bool disabled) {
   Rectangle buttonRect = {(float)x, (float)y, (float)width, (float)height};
-  return drawButton(buttonRect, text, fontSize, color, hoverColor,
-                    pressedColor, disabled);
+  return drawButton(buttonRect, text, fontSize, color, hoverColor, pressedColor,
+                    disabled);
 }
 
 int drawSlider(Rectangle size, const char *text, float &value, Color color,
                Color hoverColor, Color pressedColor) {
   Font *font = Game::getGameInstance()->getFont();
-  Vector2 textSize = MeasureTextEx(*font, text, 48, 1);
-  Vector2 minusSize = MeasureTextEx(*font, "-", 48, 1);
-  Vector2 plusSize = MeasureTextEx(*font, "+", 48, 1);
-  float width = (size.width - minusSize.x - plusSize.x) * 100 / value;
+  Vector2 textSize = MeasureTextEx(*font, text, 20, 1);
+  Vector2 minusSize = MeasureTextEx(*font, "-", 30, 1);
+  Vector2 plusSize = MeasureTextEx(*font, "+", 30, 1);
+  float width = (size.width - minusSize.x - plusSize.x) * value / 100.f;
   // Label
-  DrawTextEx(*font, text, {size.x, size.y}, 48, 1, GetThemeColor(FONT_COLOR));
+  DrawTextEx(*font, text, {size.x, size.y}, 20, 1, GetThemeColor(FONT_COLOR));
   // Minus symbol
-  DrawTextEx(*font, text, {size.x, size.y + textSize.y + 2}, 48, 1,
+  DrawTextEx(*font, "-", {size.x, size.y + textSize.y + 2}, 30, 1,
              GetThemeColor(FONT_COLOR));
   // Plus symbol
-  DrawTextEx(*font, text,
-             {size.x + size.width - plusSize.x, size.y + textSize.y + 2}, 48, 1,
+  DrawTextEx(*font, "+",
+             {size.x + size.width - plusSize.x, size.y + textSize.y + 2}, 30, 1,
              GetThemeColor(FONT_COLOR));
   // Slider
   DrawRectangleRec({size.x + minusSize.x + 2, size.y + textSize.y + 2, width,
-                    size.y - textSize.y},
+                    size.height - textSize.y},
                    color);
+  ;
   if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) &&
       CheckCollisionPointRec(GetMousePosition(),
                              {size.x + minusSize.x, size.y + textSize.y,
                               size.width - minusSize.x - plusSize.x,
                               size.height - textSize.y})) {
+    std::cout << "clicked on " << text << " slider" << std::endl;
     value = 100.f * (GetMousePosition().x - size.x - minusSize.x) /
             (size.width - minusSize.x - plusSize.x);
     return 1;

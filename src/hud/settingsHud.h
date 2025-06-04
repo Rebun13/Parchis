@@ -22,16 +22,13 @@ private:
     Rectangle volumeContainer = {volumeContainerAnchor.x, volumeContainerAnchor.y, 384, 240};
 
     float generalVolume = 1.0f;
-    const Vector2 generalVolumeLabelCoord = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 24};
-    const Rectangle generalVolumeSlider = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 48, 336, 24};
+    const Rectangle generalVolumeSlider = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 48, 336, 48};
 
     float musicVolume = 1.0f;
-    const Vector2 musicVolumeLabelCoord = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 96};
-    const Rectangle musicVolumeSlider = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 120, 336, 24};
+    const Rectangle musicVolumeSlider = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 120, 336, 48};
 
     float fxVolume = 1.0f;
-    const Vector2 fxVolumeLabelCoord = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 168};
-    const Rectangle fxVolumeSlider = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 192, 336, 24};
+    const Rectangle fxVolumeSlider = {volumeContainerAnchor.x + 24, volumeContainerAnchor.y + 192, 336, 48};
     // Buttons
     const Rectangle saveButton = {48, 384, 384, 48};
     bool saveButtonClicked = false;

@@ -1,2 +1,2 @@
 CompileFlags:
-  Add: [-I/src, -I/include]
+  Add: [-I/src, -I/include, -I/build/external]
