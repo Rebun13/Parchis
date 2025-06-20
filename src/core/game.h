@@ -16,6 +16,8 @@ public:
   virtual bool gameShouldClose() final;
   virtual void setClose_() final;
   virtual void setState(GameState *state) final;
+  virtual void loadTexturePack(std::string path) final;
+  virtual Texture2D *getTexturePack() final;
   virtual Font *getFont() final;
   // TODO: add arguments and save using settings::saveSettings()
   virtual void saveSettings() final;
@@ -25,6 +27,7 @@ public:
 
 private:
   GameState *state_;
+  Texture2D *texture;
   bool close{false};
   Font font_;
   static Game *instance;

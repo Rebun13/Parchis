@@ -3,6 +3,7 @@
 #include "gameState.h"
 #include "hud/hud.h"
 #include "raylib.h"
+#include "style/mapping.h"
 #include <array>
 #include <memory>
 #include <string>
@@ -16,9 +17,10 @@ public:
 
 private:
   int colorIndex;
-  Texture2D bg;
-  std::array<std::string, 4> bgOptions{
-      "textures/menu_bg_blue.png", "textures/menu_bg_green.png",
-      "textures/menu_bg_red.png", "textures/menu_bg_yellow.png"};
+  Texture2D *bg;
+  Rectangle bgCoords;
+  std::array<TextureMapping::TextureIndex, 4> bgOptions{
+      TextureMapping::MENU_BG_BLUE, TextureMapping::MENU_BG_GREEN,
+      TextureMapping::MENU_BG_RED, TextureMapping::MENU_BG_YELLOW};
   std::unique_ptr<Hud> hud;
 };

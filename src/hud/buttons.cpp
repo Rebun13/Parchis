@@ -46,14 +46,14 @@ int drawSlider(Rectangle size, const char *text, float &value, Color color,
   Vector2 plusSize = MeasureTextEx(*font, "+", 30, 1);
   float width = (size.width - minusSize.x - plusSize.x) * value / 100.f;
   // Label
-  DrawTextEx(*font, text, {size.x, size.y}, 20, 1, GetThemeColor(FONT_COLOR));
+  DrawTextEx(*font, text, {size.x, size.y}, 20, 1, GetThemeColor(ThemeColor::FONT_COLOR));
   // Minus symbol
   DrawTextEx(*font, "-", {size.x, size.y + textSize.y + 2}, 30, 1,
-             GetThemeColor(FONT_COLOR));
+             GetThemeColor(ThemeColor::FONT_COLOR));
   // Plus symbol
   DrawTextEx(*font, "+",
              {size.x + size.width - plusSize.x, size.y + textSize.y + 2}, 30, 1,
-             GetThemeColor(FONT_COLOR));
+             GetThemeColor(ThemeColor::FONT_COLOR));
   // Slider
   DrawRectangleRec({size.x + minusSize.x + 2, size.y + textSize.y + 2, width,
                     size.height - textSize.y},

@@ -28,44 +28,44 @@ void RegularGameMode::draw() {
     if (drawButton(buttonTwoPlayerRect.x, buttonTwoPlayerRect.y,
                    buttonTwoPlayerRect.width, buttonTwoPlayerRect.height,
                    buttonTwoPlayerText, 20,
-                   numPlayers == 2 ? GetThemeColor(PRIMARY_COLOR_PRESS)
-                                   : GetThemeColor(PRIMARY_COLOR),
-                   GetThemeColor(PRIMARY_COLOR_HOVER),
-                   GetThemeColor(PRIMARY_COLOR_PRESS))) {
+                   numPlayers == 2 ? ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS)
+                                   : ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR),
+                   ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+                   ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS))) {
       numPlayers = 2;
     }
     if (drawButton(buttonThreePlayerRect.x, buttonThreePlayerRect.y,
                    buttonThreePlayerRect.width, buttonThreePlayerRect.height,
                    buttonThreePlayerText, 20,
-                   numPlayers == 3 ? GetThemeColor(PRIMARY_COLOR_PRESS)
-                                   : GetThemeColor(PRIMARY_COLOR),
-                   GetThemeColor(PRIMARY_COLOR_HOVER),
-                   GetThemeColor(PRIMARY_COLOR_PRESS))) {
+                   numPlayers == 3 ? ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS)
+                                   : ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR),
+                   ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+                   ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS))) {
       numPlayers = 3;
     }
     if (drawButton(buttonFourPlayerRect.x, buttonFourPlayerRect.y,
                    buttonFourPlayerRect.width, buttonFourPlayerRect.height,
                    buttonFourPlayerText, 20,
-                   numPlayers == 4 ? GetThemeColor(PRIMARY_COLOR_PRESS)
-                                   : GetThemeColor(PRIMARY_COLOR),
-                   GetThemeColor(PRIMARY_COLOR_HOVER),
-                   GetThemeColor(PRIMARY_COLOR_PRESS))) {
+                   numPlayers == 4 ? ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS)
+                                   : ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR),
+                   ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+                   ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS))) {
       numPlayers = 4;
     }
     // TODO: start game button
     if (drawButton(buttonPlayRect.x, buttonPlayRect.y, buttonPlayRect.width,
                    buttonPlayRect.height, buttonPlayText, 20,
-                   GetThemeColor(PRIMARY_COLOR),
-                   GetThemeColor(PRIMARY_COLOR_HOVER),
-                   GetThemeColor(PRIMARY_COLOR_PRESS), numPlayers == 0)) {
+                   ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR),
+                   ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+                   ThemeColor::GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS), numPlayers == 0)) {
       gameStarted = true;
       init();
     }
     if (drawButton(buttonExitRect.x, buttonExitRect.y, buttonExitRect.width,
                    buttonExitRect.height, buttonExitText, 20,
-                   GetThemeColor(SECONDARY_COLOR),
-                   GetThemeColor(SECONDARY_COLOR_HOVER),
-                   GetThemeColor(SECONDARY_COLOR_PRESS))) {
+                   ThemeColor::GetThemeColor(ThemeColor::SECONDARY_COLOR),
+                   ThemeColor::GetThemeColor(ThemeColor::SECONDARY_COLOR_HOVER),
+                   ThemeColor::GetThemeColor(ThemeColor::SECONDARY_COLOR_PRESS))) {
       exitButtonClicked = true;
     }
   } else {

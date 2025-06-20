@@ -19,58 +19,58 @@ PlayingHud::PlayingHud() {
 PlayingHud::~PlayingHud() { }
 
 void PlayingHud::draw() {
-  if (drawButton(buttonExit, exitButtonText, 20, GetThemeColor(PRIMARY_COLOR),
-                 GetThemeColor(PRIMARY_COLOR_HOVER),
-                 GetThemeColor(PRIMARY_COLOR_PRESS))) {
+  if (drawButton(buttonExit, exitButtonText, 20, GetThemeColor(ThemeColor::PRIMARY_COLOR),
+                 GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+                 GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS))) {
     exitButtonClicked = true;
   }
 
   if (drawButton(buttonSettings, settingsButtonText, 15 ,
-                 GetThemeColor(PRIMARY_COLOR),
-                 GetThemeColor(PRIMARY_COLOR_HOVER),
-                 GetThemeColor(PRIMARY_COLOR_PRESS))) {
+                 GetThemeColor(ThemeColor::PRIMARY_COLOR),
+                 GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+                 GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS))) {
     settingsButtonClicked = true;
   }
 
   if (exitButtonClicked) {
-    DrawRectangleRec(exitWindow, GetThemeColor(BG_COLOR_ALT));
+    DrawRectangleRec(exitWindow, GetThemeColor(ThemeColor::BG_COLOR_ALT));
     DrawTextEx(*font, exitWindowText, exitWindowTextPosition, 16, 1,
-               GetThemeColor(FONT_COLOR));
+               GetThemeColor(ThemeColor::FONT_COLOR));
     if (drawButton(buttonSurrender, surrenderButtonText, 20,
-                   GetThemeColor(PRIMARY_COLOR),
-                   GetThemeColor(PRIMARY_COLOR_HOVER),
-                   GetThemeColor(PRIMARY_COLOR_PRESS))) {
+                   GetThemeColor(ThemeColor::PRIMARY_COLOR),
+                   GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+                   GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS))) {
       surrenderButtonClicked = true;
     };
     if (drawButton(buttonCancel, cancelButtonText, 20,
-                   GetThemeColor(PRIMARY_COLOR),
-                   GetThemeColor(PRIMARY_COLOR_HOVER),
-                   GetThemeColor(PRIMARY_COLOR_PRESS))) {
+                   GetThemeColor(ThemeColor::PRIMARY_COLOR),
+                   GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+                   GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS))) {
       cancelButtonClicked = true;
     };
   }
   if (settingsButtonClicked) {
-    DrawRectangleRec(settingsContainer, GetThemeColor(BG_COLOR_ALT));
+    DrawRectangleRec(settingsContainer, GetThemeColor(ThemeColor::BG_COLOR_ALT));
     if (drawButton(settingsContainer.x + 20, 2, settingsContainer.y + 2, 20,
-                   "Exit", 20, GetThemeColor(SECONDARY_COLOR),
-                   GetThemeColor(SECONDARY_COLOR_HOVER),
-                   GetThemeColor(SECONDARY_COLOR_PRESS))) {
+                   "Exit", 20, GetThemeColor(ThemeColor::SECONDARY_COLOR),
+                   GetThemeColor(ThemeColor::SECONDARY_COLOR_HOVER),
+                   GetThemeColor(ThemeColor::SECONDARY_COLOR_PRESS))) {
       settingsButtonClicked = false;
       // TODO: save applied settings
       saveButtonClicked = true;
     }
 
     drawSlider(generalVolumeSlider, generalVolumeLabelText, generalVolume,
-               GetThemeColor(PRIMARY_COLOR), GetThemeColor(PRIMARY_COLOR_HOVER),
-               GetThemeColor(PRIMARY_COLOR_PRESS));
+               GetThemeColor(ThemeColor::PRIMARY_COLOR), GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+               GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS));
 
     drawSlider(musicVolumeSlider, musicVolumeLabelText, musicVolume,
-               GetThemeColor(PRIMARY_COLOR), GetThemeColor(PRIMARY_COLOR_HOVER),
-               GetThemeColor(PRIMARY_COLOR_PRESS));
+               GetThemeColor(ThemeColor::PRIMARY_COLOR), GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+               GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS));
 
     drawSlider(fxVolumeSlider, fxVolumeLabelText, fxVolume,
-               GetThemeColor(PRIMARY_COLOR), GetThemeColor(PRIMARY_COLOR_HOVER),
-               GetThemeColor(PRIMARY_COLOR_PRESS));
+               GetThemeColor(ThemeColor::PRIMARY_COLOR), GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+               GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS));
   }
 }
 

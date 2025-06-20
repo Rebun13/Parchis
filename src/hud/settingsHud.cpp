@@ -14,27 +14,27 @@ SettingsHud::SettingsHud() {
 SettingsHud::~SettingsHud() { }
 
 void SettingsHud::draw() {
-  if (drawButton(exitButton, BackButtonText, 20, GetThemeColor(PRIMARY_COLOR),
-                 GetThemeColor(PRIMARY_COLOR_HOVER),
-                 GetThemeColor((PRIMARY_COLOR_PRESS)))) {
+  if (drawButton(exitButton, BackButtonText, 20, GetThemeColor(ThemeColor::PRIMARY_COLOR),
+                 GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+                 GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS))) {
     exitButtonClicked = true;
   }
 
   drawSlider(generalVolumeSlider, generalVolumeLabelText, generalVolume,
-             GetThemeColor(PRIMARY_COLOR), GetThemeColor(PRIMARY_COLOR_HOVER),
-             GetThemeColor((PRIMARY_COLOR_PRESS)));
+             GetThemeColor(ThemeColor::PRIMARY_COLOR), GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+             GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS));
 
   drawSlider(musicVolumeSlider, musicVolumeLabelText, musicVolume,
-             GetThemeColor(PRIMARY_COLOR), GetThemeColor(PRIMARY_COLOR_HOVER),
-             GetThemeColor((PRIMARY_COLOR_PRESS)));
+             GetThemeColor(ThemeColor::PRIMARY_COLOR), GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+             GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS));
 
   drawSlider(fxVolumeSlider, fxVolumeLabelText, fxVolume,
-             GetThemeColor(PRIMARY_COLOR), GetThemeColor(PRIMARY_COLOR_HOVER),
-             GetThemeColor((PRIMARY_COLOR_PRESS)));
+             GetThemeColor(ThemeColor::PRIMARY_COLOR), GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+             GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS));
 
-  if (drawButton(saveButton, saveButtonText, 20, GetThemeColor(PRIMARY_COLOR),
-                 GetThemeColor(PRIMARY_COLOR_HOVER),
-                 GetThemeColor((PRIMARY_COLOR_PRESS)))) {
+  if (drawButton(saveButton, saveButtonText, 20, GetThemeColor(ThemeColor::PRIMARY_COLOR),
+                 GetThemeColor(ThemeColor::PRIMARY_COLOR_HOVER),
+                 GetThemeColor(ThemeColor::PRIMARY_COLOR_PRESS))) {
     saveButtonClicked = true;
   }
 }
