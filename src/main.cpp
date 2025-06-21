@@ -77,37 +77,26 @@ void gameLoop() {
 void loadingScreen() {
   unsigned char opacity = 0;
   Texture2D *texture = GameInterface::getGameInstance()->getTexturePack();
-  Font *font = GameInterface::getGameInstance()->getFont();
-  Vector2 sizeB = MeasureTextEx(*font, "Estudio CEIVE", 35, 5);
-  Vector2 sizeC = MeasureTextEx(*font, "by Rebun", 20, 5);
-
-  Shader shader =
-      LoadShader(0, TextFormat("shaders/glsl%i/bloom.fs", GLSL_VERSION));
 
   float animationDuration = 3.0f;
-  std::vector<float> animation = {1.5f, 1.6f, 1.7f, 2.8f, 100.0f};
+  std::vector<float> animation = {1.5f, 1.6f, 1.7f, 1.8f, 3.5f};
   int animationCounter = 0;
-  bool shaderActive = false;
+  bool isVisible = true;
   for (float elapsedTime = 0.f; elapsedTime < animationDuration;
        elapsedTime += GetFrameTime()) {
     if (elapsedTime > animation[animationCounter]) {
-      shaderActive = !shaderActive;
+      isVisible = !isVisible;
       animationCounter++;
     }
     BeginDrawing();
-    if (shaderActive) {
-      BeginShaderMode(shader);
-    }
     ClearBackground(GetThemeColor(ThemeColor::BG_COLOR));
     DrawTexturePro(*texture,
                    TextureMapping::getTextureMapping(TextureMapping::LOGO),
-                   {0, 0, 0, 0}, {110, 220}, 0, WHITE);
-    DrawTextEx(*font, "Estudio CEIVE", {(480 - sizeB.x) / 2, 600}, 35, 5,
-               WHITE);
-    DrawTextEx(*font, "by Rebun", {(480 - sizeC.x) / 2, 645}, 20, 5, WHITE);
-    if (shaderActive) {
-      EndShaderMode();
-    }
+                   {110, 220, 260, 80}, {0, 0}, 0, isVisible? WHITE : Color({0,0,0,0}));
+    DrawTexturePro(*texture,
+                   TextureMapping::getTextureMapping(TextureMapping::SUBTITLE),
+                   {110, 500, 260, 84}, {0, 0}, 0, isVisible? WHITE : Color({0,0,0,0}));
+  
     EndDrawing();
   }
   animationDuration = 1.f;
@@ -117,8 +106,8 @@ void loadingScreen() {
     ClearBackground(GetThemeColor(ThemeColor::BG_COLOR));
     DrawTexturePro(
         *texture, TextureMapping::getTextureMapping(TextureMapping::LOGO),
-        {0, 0, 0, 0}, {110, (220 - elapsedTime * 133 / animationDuration)}, 0,
-        WHITE);
+        {110, (220 - elapsedTime * 133 / animationDuration), 260, 80}, {0, 0},
+        0, WHITE);
     EndDrawing();
   }
   animationDuration = 0.15f;
@@ -130,8 +119,7 @@ void loadingScreen() {
                         : WHITE);
     DrawTexturePro(*texture,
                    TextureMapping::getTextureMapping(TextureMapping::LOGO),
-                   {0, 0, 0, 0}, {110, 87}, 0, WHITE);
+                   {110, 87, 260, 80}, {0, 0}, 0, WHITE);
     EndDrawing();
   }
-  UnloadShader(shader);
 }

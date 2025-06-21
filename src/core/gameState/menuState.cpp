@@ -14,7 +14,7 @@ MenuState::MenuState() {
   std::uniform_int_distribution<> distr(0, 3);
   colorIndex = distr(gen);
   bg = GameInterface::getGameInstance()->getTexturePack();
-  bgCoords = TextureMapping::getTextureMapping((TextureMapping::TextureIndex) colorIndex);
+  bgCoords = TextureMapping::getTextureMapping(bgOptions[colorIndex]);
   hud = std::make_unique<MenuHud>(colorIndex);
 }
 
@@ -41,6 +41,6 @@ void MenuState::update() {
 }
 
 void MenuState::draw() {
-  DrawTexturePro(*bg, {bgCoords}, {0, 0, 0, 0}, {0, 0}, 0, WHITE);
+  DrawTexturePro(*bg, {bgCoords}, {0, 0, 480, 720}, {0, 0}, 0, WHITE);
   hud->draw();
 }

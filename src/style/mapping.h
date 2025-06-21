@@ -5,7 +5,8 @@
 
 namespace TextureMapping {
 const std::vector<Rectangle> coords{
-    {0, 0, 578, 180},    // logo
+    {0, 0, 578, 179},    // logo
+    {0, 641, 578, 186},  // subtitle
     {0, 180, 460, 460},  // board
     {578, 0, 480, 720},  // menu_bg_blue
     {1058, 0, 480, 720}, // menu_bg_yellow
@@ -15,6 +16,7 @@ const std::vector<Rectangle> coords{
 
 enum TextureIndex {
   LOGO,
+  SUBTITLE,
   BOARD,
   MENU_BG_BLUE,
   MENU_BG_YELLOW,

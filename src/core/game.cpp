@@ -50,9 +50,9 @@ void Game::setState(GameState *state) {
 
 void Game::loadTexturePack(std::string path) {
   try {
-    Image img = LoadImage(path.c_str());
-    Texture2D tx = LoadTextureFromImage(img);
-    texture = &tx;
+    Texture2D *tx = (Texture2D *)malloc(sizeof(Texture2D));
+    *tx = LoadTexture(path.c_str());
+    texture = tx;
   } catch (std::exception e) {
     std::cerr << "Could not load texture pack. " << e.what() << std::endl;
   }
