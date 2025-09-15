@@ -1,4 +1,4 @@
-#include "playingMenu.h"
+#include "PlayingMenu.h"
 
 PlayingMenu::PlayingMenu()
 {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "raylib.h"
-#include "menu.h"
+#include "Menu.h"
 
 class SettingsMenu : public Menu
 {

@@ -1,5 +1,5 @@
-#include "settingsMenu.h"
-#include "core/settings.h"
+#include "SettingsMenu.h"
+#include "core/Settings.h"
 
 SettingsMenu::SettingsMenu()
 {

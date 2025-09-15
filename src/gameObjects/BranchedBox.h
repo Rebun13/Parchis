@@ -1,4 +1,4 @@
-#include "box.h"
+#include "Box.h"
 
 class BranchedBox : public Box
 {

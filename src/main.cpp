@@ -5,8 +5,8 @@
 #include <iostream>
 #include <cmath>
 #include "raylib.h"
-#include "./core/colors.h"
-#include "./core/game.h"
+#include "./core/Colors.h"
+#include "./core/Game.h"
 #include "style/styleLoader.h"
 
 #include "resource_dir.h" // utility header for SearchAndSetResourceDir

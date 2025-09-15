@@ -1,10 +1,10 @@
-#include "gameState.h"
+#include "GameState.h"
 #include "raylib.h"
-#include "./game.h"
-#include "menus/mainMenu.h"
-#include "menus/settingsMenu.h"
-#include "menus/playingMenu.h"
-#include "gameObjects/board.h"
+#include "./Game.h"
+#include "menus/MainMenu.h"
+#include "menus/SettingsMenu.h"
+#include "menus/PlayingMenu.h"
+#include "gameObjects/Board.h"
 
 MenuState::~MenuState()
 {

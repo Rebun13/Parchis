@@ -1,6 +1,6 @@
 #include "Game.h"
 #include "raylib.h"
-#include "./gameState.h"
+#include "./GameState.h"
 
 Game::Game()
 {

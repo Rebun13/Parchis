@@ -1,4 +1,4 @@
-#include "mainMenu.h"
+#include "MainMenu.h"
 
 MainMenu::~MainMenu()
 {

@@ -1,4 +1,4 @@
-#include "colors.h"
+#include "Colors.h"
 
 const Color bgColor = {26, 31, 40, 255};
 
